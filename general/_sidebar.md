@@ -1,3 +1,3 @@
 * [Home](/)
-* [Base Linux Knowledge](/general/linux_knowledge.md)
-
+* [Base de connaissance Linux](/general/linux_knowledge.md)
+* [Architecture de l'infrastructure](/general/architecture.md)
