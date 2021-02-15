@@ -6,7 +6,7 @@ Linux est basé en lignes de commandes, et vous allez probablement devoir utilis
 
 Exemple de chemin de fichier sur Linux:
 
-> /var/log/apache/access.log:
+> /var/log/apache/access.log
 
 Quand nous **séparons** le chemin en morceaux, nous avons:
 - le `/` au début est le répertoire racine, tous les chemins absolu commencent par lui
