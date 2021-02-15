@@ -8,29 +8,29 @@ Exemple de chemin de fichier sur Linux:
 
 > /var/log/apache/access.log:
 
-When we **split this path**, we got:
-- the `/` at the start is the root directory, every path start with it
-- `/var/log/apache` is the name of the directory
-- `access.log` is the filename (except some rare cases, directory don't have a prefix)
-  - `access` is the name of the file
-  - `log` is the extension of the file -> in this case, mean it's a log file
+Quand nous **séparons** le chemin en morceaux, nous avons:
+- le `/` au début est le répertoire racine, tous les chemins absolu commencent par lui
+- `/var/log/apache` est le nom du répertoire
+- `access.log` est le nom complet du fichier
+  - `access` est le nom du fichier
+  - `log` est l'extension du fichier -> dans ce cas, il s'agit d'un fichier de log
 
-For all those command, **a path can either be**:
-- **absolute**: that mean the full path to an element
-    - eg: `/var/log/apache/access.log`
-- **relative**: the path is relative to the directory we are in now
-    - eg: if we are in `/var/log`, `apache/access.log` is valid
+Pour toutes les commandes, un **chemin peut-être absolu ou relatif**:
+- **absolu**: il s'agit du chemin complet vers l'élément
+    - ex: `/var/log/apache/access.log`
+- **relatif**: le chemin est relatif au répertoire dans lequel nous nous trouvons
+    - ex: si nous sommes dans `/var/log`, le fichier `apache/access.log` est valide
 
-**Special directories and patterns**:
-- `.` is *current directory*
-- `..` is the *upper directory*
-  - For `/var/log/apache`, upper directory is `/var/log`
-- `*` match all files and directories, and is called wildcard
-  - From there, you can build custom patterns. Eg, to see all log files : `*.log`
+**Répertoires & caractères spéciaux**:
+- `.` est *le répertoire actuel*
+- `..` est *le répertoire parent*
+  - Pour le répertoire `/var/log/apache`, le répertoire parent est `/var/log`
+- `*` est un pattern qui correspond à tous les fichiers & répertoires
+  - A partir de celui-ci, on peux construire des patterns spéciaux. Par exemple, tous les fichiers de logs : `*.log`
 
-## System command
+## Commandes système
 
-### System
+### Processus
 
 ```bash
 # Afficher tous les processus actifs
@@ -43,7 +43,7 @@ kill -9 process_pid
 man my_command
 ```
 
-### Pipe
+### Opérateur barre vertical
 
 Le caractère **barre vertical** `|` est un caractère spécial, très utilisé dans le monde Linux. Il va vous permettre de **rediriger la sortie d'une commande vers une autre**, pour faire des modifications sur celle-ci, par exemple.
 
@@ -59,84 +59,89 @@ cat access.log | grep "ERROR" | grep -v "CONNECTION"
 ```
 
 
-### Directories
+### Répertoires
 
 ```bash
-# Go into a directory
+# Aller dans le répertoire en question
 cd /var/log/apache
 
-# Know in which directory we are
+# Afficher le répertoire actuel
 pwd
 
-# Go back into upper directory
-# If we are in /var/log/apache, we will go to /var/log
+# Aller dans le répertoire parent
 cd ..
 
-# Create a directory
+# Créer un répertoire
 mkdir apache
 
-# Delete an empty directory
+# Supprimer un répertoire VIDE
 rmdir apache
 
-# Edit a file, lots of binary available: nano, vim, emac, ..
-nano apache/access.log
-
-# Display the files and directories in current directory
+# Afficher les fichiers et répertoires dans le répertoire actuel
 ls
 
-# Display the files and directories in current directories with more infos
+# Afficher les fichiers et répertoires dans le répertoire actuel avec plus d'informations
 ls -altrh
 
-# Display files ending with ".log" extension
+# Afficher les fichiers de logs (avec l'extension '.log')
 ls *.log
 
-# Display current arborescense as a tree
+# Afficher l'arborescense de fichier comme un arbre
 tree .
-
-# Create an empty file
-touch empty.log
 ```
 
-## File
+## Fichiers
 
 ```bash
-# Create an empty file
+# Créer un fichier vide
 touch empty.log
 
-# Edit a file, lots of program available: nano, vim, emac, ..
+# Modifier un fichier, d'autres commandes sont possibles : vim, emac, ..
 nano access.log
 
-# Display a file content
+# Afficher le contenu d'un fichier
 cat access.log
 
 # Afficher un fichier en mode tabulé
 less access.log
 
-# Display a file that is updating in real time
+# Afficher un fichier avec une mise à jour en temps réel
 tail -f access.log
 ```
 
-## Mixed
+## Fichier & répertoires
 
-Applicable for both files and directories
+Fonctionne pour les fichiers et répertoires
 
 ```bash
-# Move a file
+# Déplacer un fichier ou répertoire
 mv my_file new_filename
 
-# Copy a file
+# Copier un fichier ou répertoire
 mv my_file new_copied_filename
 
-# Delete files and directories
+# Supprimer un fichier ou répertoire
 rm -r things_to_delete
 ```
 
-## Web related command
+## Web
 
 ```bash
-# Download a file from http & write it to disk
+# Télécharger un fichier et l'écrire sur disque
 wget https://artifacts.elastic.co/downloads/logstash/logstash-7.11.0-linux-x86_64.tar.gz -O logstash.tar.gz
 
-# Get answer from an API from command line
+# Avoir la réponse d'un API authentifié par ligne de commande
 curl -k -u username:password https://localhost:9200
+```
+
+## Chaînes de caractères
+
+Comme vous avez pu le voir, aucune des chaînes de caractère dans les exemples ne contiennent d'espaces.
+
+En effet, par défaut, une chaîne de caractère ne contient pas d'espace sous Linux.
+
+Si vous voulez qu'elle en contienne, il va falloir l'entourer des caractères guillemet double (`"`) ou guillement simple(`'`)
+
+```bash
+echo "Bonjour, comment allez-vous ?"
 ```
