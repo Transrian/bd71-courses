@@ -118,7 +118,7 @@ Fonctionne pour les fichiers et répertoires
 mv my_file new_filename
 
 # Copier un fichier ou répertoire
-mv my_file new_copied_filename
+cp my_file new_copied_filename
 
 # Supprimer un fichier ou répertoire
 rm -r things_to_delete
@@ -144,4 +144,14 @@ Si vous voulez qu'elle en contienne, il va falloir l'entourer des caractères gu
 
 ```bash
 echo "Bonjour, comment allez-vous ?"
+```
+
+## Autres
+
+```bash
+# Compresser des fichiers et répertoires dans une archive
+tar -zxvf target_archive.tar.gz file1 file2 dir1 dir2
+
+# Décompresser une archive .tar.gz
+tar -zxvf my_archive.tar.gz
 ```
