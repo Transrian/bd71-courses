@@ -237,7 +237,7 @@ A partir de cet extrait de données, nous allons essayé de déterminer les **pa
 
 En effet, la structure, au moins au début, est très similaire entre les différentes lignes (prenons example sur la première ligne):
 
-> Apr 23 18:01:16 valentin-test sshd[13824]: Accepted publickey for ubuntu from 172.16.180.99 port 53332 ssh2: RSA ...
+> Apr 23 18&#5801&#5816 valentin-test sshd[13824]: Accepted publickey for ubuntu from 172.16.180.99 port 53332 ssh2: RSA ...
 
 - Le premier motif est `Apr  3 18:01:16`, et correspond à une date, avec une heure
 - Le second motif est `valentin-test`, une chaine de caractère
