@@ -9,14 +9,14 @@ digraph f {
 
     "Kibana" -> "Elasticsearch"
     "Nginx" -> "Kibana"
+    "Nginx" -> "Elasticsearch"
     "Monde extérieur"
-    "Nginx" -> "Monde extérieur" [label="port 80, 443", color=red, dir="back"]
-    "Elasticsearch" -> "Monde extérieur" [label="port 9200", color=red, dir="back"]
-    "Redis" -> "Monde extérieur" [label="port 6379", color=red, dir="back"]
-    "Filebeat" -> "Elasticsearch" [constraint=false, ltail=cluster_monitoring, color=antiquewhite4]
-    "Filebeat" -> "Kibana" [constraint=false, ltail=cluster_monitoring, color=antiquewhite4]
-    "Filebeat" -> "Nginx" [constraint=false, ltail=cluster_monitoring, color=antiquewhite4]
-    "Filebeat" -> "Redis" [constraint=false, ltail=cluster_monitoring, color=antiquewhite4]
+    "Monde extérieur" -> "Nginx" [label="port 5601, 9200", color=red, dir="back"]
+    "Monde extérieur" -> "Redis" [label="port 6379", color=red, dir="back"]
+    "Filebeat" -> "Elasticsearch" [constraint=true, ltail=cluster_monitoring, color=antiquewhite4]
+    "Filebeat" -> "Kibana" [constraint=true, ltail=cluster_monitoring, color=antiquewhite4]
+    "Filebeat" -> "Nginx" [constraint=true, ltail=cluster_monitoring, color=antiquewhite4]
+    "Filebeat" -> "Redis" [constraint=true, ltail=cluster_monitoring, color=antiquewhite4]
 
     subgraph cluster_server {
         label="Serveur"
@@ -41,7 +41,7 @@ digraph f {
 
 ```dot {engine="dot"}
 digraph f {  
-    #compound=true
+    compound=true
 
     "Elasticsearch 1" -> "Elasticsearch 2" [dir=both, color=dodgerblue1]
     "Elasticsearch 2" -> "Elasticsearch 3" [dir=both, color=dodgerblue1]
@@ -52,13 +52,13 @@ digraph f {
     "Kibana 3" -> "Elasticsearch 2" [constraint=false, color=deeppink]
     "Kibana 2" -> "Elasticsearch 3" [constraint=false, color=deeppink]
     "Kibana 3" -> "Elasticsearch 3" [constraint=false, color=deeppink]
-    "Nginx 1" -> "Kibana 1" [constraint=false, color=darkgreen]
-    "Nginx 2" -> "Kibana 1" [constraint=false, color=darkgreen]
-    "Nginx 1" -> "Kibana 2" [constraint=false, color=darkgreen]
-    "Nginx 2" -> "Kibana 2" [constraint=false, color=darkgreen]
-    "Nginx 3" -> "Kibana 2" [constraint=false, color=darkgreen]
-    "Nginx 2" -> "Kibana 3" [constraint=false, color=darkgreen]
-    "Nginx 3" -> "Kibana 3" [constraint=false, color=darkgreen]
+    "Nginx 1" -> "Kibana 1" [constraint=false, color=darkgreen, lhead="cluster_elk_server_1"]
+    "Nginx 2" -> "Kibana 1" [constraint=false, color=darkgreen, lhead="cluster_elk_server_1"]
+    "Nginx 1" -> "Kibana 2" [constraint=false, color=darkgreen, lhead="cluster_elk_server_2"]
+    "Nginx 2" -> "Kibana 2" [constraint=false, color=darkgreen, lhead="cluster_elk_server_2"]
+    "Nginx 3" -> "Kibana 2" [constraint=false, color=darkgreen, lhead="cluster_elk_server_2"]
+    "Nginx 2" -> "Kibana 3" [constraint=false, color=darkgreen, lhead="cluster_elk_server_3"]
+    "Nginx 3" -> "Kibana 3" [constraint=false, color=darkgreen, lhead="cluster_elk_server_3"]
 
    subgraph cluster_server_1 {
         label="Serveur 1"
@@ -67,6 +67,12 @@ digraph f {
         "Nginx 1" [color=darkgreen]
         "Redis 1" [color=darkgoldenrod2]
         "Elasticsearch 1" [color=dodgerblue1]
+
+        subgraph cluster_elk_server_1 {
+            label="ELK 1"
+            "Kibana 1"
+            "Elasticsearch 1"
+        }
     }
 
     subgraph cluster_server_2 {
@@ -76,6 +82,12 @@ digraph f {
         "Nginx 2" [color=darkgreen]
         "Redis 2" [color=darkgoldenrod2]
         "Elasticsearch 2" [color=dodgerblue1]
+
+        subgraph cluster_elk_server_2 {
+            label="ELK 2"
+            "Kibana 2"
+            "Elasticsearch 2"
+        }
     }
 
     subgraph cluster_server_3 {
@@ -85,6 +97,12 @@ digraph f {
         "Nginx 3" [color=darkgreen]
         "Redis 3" [color=darkgoldenrod2]
         "Elasticsearch 3" [color=dodgerblue1]
+
+        subgraph cluster_elk_server_3 {
+            label="ELK 3"
+            "Kibana 3"
+            "Elasticsearch 3"
+        }
     }
 
     #{rank=same; "Serveur 1"; "Serveur 2"; "Serveur 3";}
@@ -102,14 +120,15 @@ digraph f {
     "Kibana" -> "Elasticsearch"
     "Nginx" -> "Kibana"
 
-    "Filebeat" -> "Redis" [label="stockage logs", color=lightsalmon1]
-    "Kibana" -> "Filebeat" [label="logs", color=lightsalmon1]
+    "Filebeat" -> "Redis" [color=lightsalmon1]
+    "Kibana" -> "Filebeat" [color=lightsalmon1]
 
     "Utilisateur" -> "Nginx" [label="visualisation logs"]
 
     "Logstash" -> "Redis" [label="recuperation logs", dir="both", color=lightsalmon1]
-    "Logstash" -> "Elasticsearch" [label="insertion logs", color=lightsalmon1]
-    
+    "Logstash" -> "Nginx" [color=lightsalmon1]
+    "Nginx" -> "Elasticsearch" [color=lightsalmon1]
+
     subgraph cluster_server {
         label="Serveur"
         "Elasticsearch" [color=dodgerblue1]
