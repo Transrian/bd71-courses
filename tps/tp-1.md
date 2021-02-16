@@ -387,3 +387,6 @@ Le **@timestamp** et l'**host** seront différents, car ils correspondent respec
 
 - la date d'ingestion par Logstash de la donnée
 - la machine sur laquel l'ingestion à été effectuée
+
+On peux également noté l'**absence de guillements** autour des valeurs des champs *date* et *pid*: cela signifie qu'ils ont bien été convertis, respectivement en date et en nombre, dans un format compréhensible par une base de donnée
+
