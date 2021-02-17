@@ -229,7 +229,7 @@ A partir de cet extrait de données, nous allons essayé de déterminer les **pa
 
 En effet, la structure, au moins au début, est très similaire entre les différentes lignes (prenons example sur la première ligne):
 
-> Apr 23 18:01:16 valentin-test sshd[13824]: Accepted publickey for ubuntu from 172.16.180.99 port 53332 ssh2: RSA ...
+> Apr 23 18&#58;01&#58;16 valentin-test sshd[13824]: Accepted publickey for ubuntu from 172.16.180.99 port 53332 ssh2: RSA ...
 
 - Le premier motif est `Apr  3 18:01:16`, et correspond à une date, avec une heure
 - Le second motif est `valentin-test`, une chaine de caractère
@@ -305,9 +305,10 @@ filter {
 ```
 
 Les 3 filtres utilisés sont les plus courant, et sont utilisés dans la majorité des configurations:
-    - le [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) va nous permettre de **découper** le message en morceaux (contenu, par défaut, dans le champs `message`). Il s'agit de ce que nous avons fait tout à l'heure
-    - le [mutate](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) va nous permettre de convertir le **pid** du processus en nombre. En effet, le grok précédent n'interprette pas les données : pour lui, toutes les parties qu'il récupèrera seront considérés comme du texte
-    - le [date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) va permettre de standardiser le format de la date. Ce format de date est particulié, car il existe deux version différente, mais ils sont construit à partir de la définition dans la documentation du module. La date résultante (qui va écraser le format initial) sera sous format [ISO8601](https://fr.wikipedia.org/wiki/ISO_8601), un format nativement reconnu par Elasticsearch.
+
+- le [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) va nous permettre de **découper** le message en morceaux (contenu, par défaut, dans le champs `message`). Il s'agit de ce que nous avons fait tout à l'heure
+- le [mutate](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) va nous permettre de convertir le **pid** du processus en nombre. En effet, le grok précédent n'interprette pas les données : pour lui, toutes les parties qu'il récupèrera seront considérés comme du texte
+- le [date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) va permettre de standardiser le format de la date. Ce format de date est particulié, car il existe deux version différente, mais ils sont construit à partir de la définition dans la documentation du module. La date résultante (qui va écraser le format initial) sera sous format [ISO8601](https://fr.wikipedia.org/wiki/ISO_8601), un format nativement reconnu par Elasticsearch.
 
 
 **Output**
