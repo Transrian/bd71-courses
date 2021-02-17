@@ -451,6 +451,7 @@ Nouveau format de logs, il faudra donc construire le filtre depuis le début!
 
 En vous servant de la [documentation logging apache](https://httpd.apache.org/docs/2.4/fr/mod/mod_log_config.html), essayer de trouver la structure, et la signification de toutes ces champs, puis réaliser le filter, et tester-le.
 
+> Ne PAS utiliser le [grok pattern](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html#_description_129) `COMBINEDAPACHELOG`
 
 #### 2.4 Data venant d'un CSV
 
