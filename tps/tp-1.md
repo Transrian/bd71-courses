@@ -30,6 +30,9 @@ wget https://artifacts.elastic.co/downloads/logstash/logstash-7.11.0-linux-x86_6
 # Décompresser l'archive
 tar -zxvf logstash.tar.gz
 
+# Suppression de l'archive
+rm logstash.tar.gz
+
 # Entez dans le répertoire de logstash
 cd logstash-7.11.0
 ```
@@ -49,12 +52,6 @@ logstash 7.11.0
 ```
 
 Si ce n'est pas le cas, il y a probablement un problème.
-
-Néanmoins, si tout fonctionne, nous pouvons supprimer l'archive de Logstash précédament téléchargée:
-
-```bash
-rm logstash.tar.gz
-```
 
 #### 1.1.2 Test de Logstash
 
