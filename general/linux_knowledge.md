@@ -1,6 +1,6 @@
 # Base de connaissance Linux
 
-Linux est basé en lignes de commandes, et vous allez probablement devoir utiliser certaines commandes pour lancer des processus, modifier des fichier de configurations, etc.
+Linux, contrairement à Windows, est principalement utilisé en ligne de commande, et vous allez probablement devoir utiliser certaines de celles-ci pour lancer des processus, modifier des fichier de configurations, etc.
 
 ## Architecture des répertoires
 

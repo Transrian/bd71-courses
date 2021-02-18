@@ -6,7 +6,7 @@ Dans chaque serveurs, les logiciels suivant sont installés:
 
 **Pour les éléments principaux**:
 
-- [Elasticsearch](https://www.elastic.co/fr/elasticsearch/): base de donnée NoSQL
+- [Elasticsearch](https://www.elastic.co/fr/elasticsearch/): base de donnée NoSQL, avec moteur de recherche distribué
 - [Kibana](https://www.elastic.co/fr/kibana/): interface web pour la visualisation des données Elasticsearch
 - [Nginx](https://www.nginx.com/): Serveur web haute performance
 - [Redis](https://redis.io/): base de donnée stockant les données en mémoire
