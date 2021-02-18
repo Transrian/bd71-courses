@@ -1,6 +1,6 @@
 # TP 1
 
-Introduction à la collecte et au traitement des données.
+**Introduction à la collecte et au traitement des données.**
 
 **TLDR**: Nous allons voir comment **récupérer des données**, les **analyser**, et les **envoyer dans Elasticsearch**, de deux manière différentes : avec *Filebeat*, et avec *Logstash*
 
@@ -10,7 +10,7 @@ Introduction à la collecte et au traitement des données.
 
 En tant qu'ETL, il est capable de:
 
-- **lire et écrire** depuis de **nombreuses sources de données**: fichier, tcp, http, sql, kafka, redis, ...
+- **lire et écrire** depuis de **nombreuses sources de données**: fichier, tcp, http, sql, kafka, redis, elasticsearch, ...
 - **transformer** les données, pour qu'elles soient interprétable et utilisable dans Elasticsearch (et donc visualisable dans Kibana)
 
 ### 1.1 Installation , test et configuration de Logstash
@@ -181,9 +181,9 @@ Le dossier:
     - `log4j.properties`: la gestion des fichiers de logs de Logstash
     - `logstash.yml`: le fichier de configuration principal de Logstash
     - `pipelines.yml`: le fichier de configuration de pipelines Logstash (détaillé plus tard)
-- `data`: Le dossier contenant les données temporaires internes Logstash
+- `data2`: Le dossier contenant les données temporaires internes Logstash
 - `input`: Le dossier qui va contenir nos fichiers de données initiaux 
-- `data`: Le dossier contenant nos données, une fois transformés
+- `output`: Le dossier contenant nos données, une fois transformés
 
 #### 1.2.2 Pipelines Logstash
 
@@ -272,7 +272,8 @@ Avec quelques modifications, cela va nous donner:
 input {
     file {
         path => "<chemin complet>/input/auth.log"
-        sincedb_path => "/dev/null"                                    
+        sincedb_path => "/dev/null"
+        start_position => "beginning"                                    
     }
 }
 ```
@@ -308,7 +309,7 @@ Les 3 filtres utilisés sont les plus courant, et sont utilisés dans la majorit
 
 - le [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) va nous permettre de **découper** le message en morceaux (contenu, par défaut, dans le champs `message`). Il s'agit de ce que nous avons fait tout à l'heure
 - le [mutate](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) va nous permettre de convertir le **pid** du processus en nombre. En effet, le grok précédent n'interprette pas les données : pour lui, toutes les parties qu'il récupèrera seront considérés comme du texte
-- le [date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) va permettre de standardiser le format de la date. Ce format de date est particulié, car il existe deux version différente, mais ils sont construit à partir de la définition dans la documentation du module. La date résultante (qui va écraser le format initial) sera sous format [ISO8601](https://fr.wikipedia.org/wiki/ISO_8601), un format nativement reconnu par Elasticsearch.
+- le [date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) va permettre de standardiser le format de la date. Ce format de date est particulié, car il existe deux version différente, mais ils sont construit à partir de la définition dans la documentation du module. La date résultante (qui va écraser le format initial) sera sous format [ISO8601](https://fr.wikipedia.org/wiki/ISO_8601), un format nativement reconnu par Elasticsearch. Si la timezone ets présente (par défaut, la date est considéré en tant qu'UTC), n'oublier pas de le préciser!
 
 
 **Output**
@@ -425,5 +426,5 @@ Même processus.
 Qui seront discutés à la fin du tp:
 
 - Est-ce que la transformation des données est simple ?
-- Les données de l'exercice 2.2 et 2.4 sont les mêmes : lesquelles sont plus simple à traiter ? et pourquoi ?
+- Les données de l'exercice 2.3 et 2.5 sont les mêmes : lesquelles sont plus simple à traiter ? et pourquoi ?
 - Vaut-il mieux formatter ses logs dans une application elle-même, ou à postériori, dans un phase de transformation ?
