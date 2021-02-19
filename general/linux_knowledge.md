@@ -1,6 +1,6 @@
 # Base de connaissance Linux
 
-Linux, contrairement à Windows, est principalement utilisé en ligne de commande, et vous allez probablement devoir utiliser certaines de celles-ci pour lancer des processus, modifier des fichier de configurations, etc.
+Linux, contrairement à Windows, est principalement utilisé en ligne de commande, et vous allez probablement devoir utiliser certaines de celles-ci pour lancer des processus, modifier des fichiers de configurations, etc.
 
 ## Architecture des répertoires
 
@@ -9,7 +9,7 @@ Exemple de chemin de fichier sur Linux:
 > /var/log/apache/access.log
 
 Quand nous **séparons** le chemin en morceaux, nous avons:
-- le `/` au début est le répertoire racine, tous les chemins absolu commencent par lui
+- le `/` au début est le répertoire racine, tous les chemins absolus commencent par lui
 - `/var/log/apache` est le nom du répertoire
 - `access.log` est le nom complet du fichier
   - `access` est le nom du fichier
@@ -26,7 +26,7 @@ Pour toutes les commandes, un **chemin peut-être absolu ou relatif**:
 - `..` est *le répertoire parent*
   - Pour le répertoire `/var/log/apache`, le répertoire parent est `/var/log`
 - `*` est un pattern qui correspond à tous les fichiers & répertoires
-  - A partir de celui-ci, on peux construire des patterns spéciaux. Par exemple, tous les fichiers de logs : `*.log`
+  - À partir de celui-ci, on peut construire des patterns spéciaux. Par exemple, tous les fichiers de logs : `*.log`
 
 ## Commandes système
 
@@ -45,15 +45,15 @@ man my_command
 
 ### Opérateur barre vertical
 
-Le caractère **barre vertical** `|` est un caractère spécial, très utilisé dans le monde Linux. Il va vous permettre de **rediriger la sortie d'une commande vers une autre**, pour faire des modifications sur celle-ci, par exemple.
+Le caractère **Barre vertical** `|` est un caractère spécial, très utilisé dans le monde Linux. Il va vous permettre de **rediriger la sortie d'une commande vers une autre**, pour faire des modifications sur celle-ci, par exemple.
 
 **Exemples**:
 
 ```bash
-# Afficher le fichier access.log, et filter pour afficher seulement les lignes contenant le mot 'INFO'
+# Afficher le fichier access.log, et filtrer pour afficher seulement les lignes contenant le mot 'INFO'
 cat access.log | grep "INFO"
 
-# On peux aussi les cumuler!
+# On peut aussi les cumuler!
 # Affichage des logs contenant le mot 'ERRORR', mais pas le mot 'CONNECTION'
 cat access.log | grep "ERROR" | grep -v "CONNECTION"
 ```
@@ -86,7 +86,7 @@ ls -altrh
 # Afficher les fichiers de logs (avec l'extension '.log')
 ls *.log
 
-# Afficher l'arborescense de fichier comme un arbre
+# Afficher l'arborescence de fichier comme un arbre
 tree .
 ```
 
@@ -136,11 +136,11 @@ curl -k -u username:password https://localhost:9200
 
 ## Chaînes de caractères
 
-Comme vous avez pu le voir, aucune des chaînes de caractère dans les exemples ne contiennent d'espaces.
+Comme vous avez pu le voir, aucune des chaînes de caractère dans les exemples ne contient d'espaces.
 
 En effet, par défaut, une chaîne de caractère ne contient pas d'espace sous Linux.
 
-Si vous voulez qu'elle en contienne, il va falloir l'entourer des caractères guillemet double (`"`) ou guillement simple(`'`)
+Si vous voulez qu'elle en contienne, il va falloir l'entourer des caractères guillemet doubles (`"`) ou guillemets simples(`'`)
 
 ```bash
 echo "Bonjour, comment allez-vous ?"

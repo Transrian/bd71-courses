@@ -6,12 +6,12 @@
 
 ## 1. Installation d'Elasticsearch
 
-> Il est **extremmement recommandé** d'executer les commandes suivantes dans un repertoire **local**, et non pas sur un **disque réseau**
+> Il est **extrêmement recommandé** d'exécuter les commandes suivantes dans un répertoire **local**, et non pas sur un **disque réseau**
 
-Ouvrez un shell et taper les commandes suivantes:
+Ouvrez un shell et tapez les commandes suivantes:
 
 ```bash
-# Téléhcharger l'archive contenant logstash
+# Télécharger l'archive contenant logstash
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.11.1-linux-x86_64.tar.gz -O elasticsearch.tar.gz
 
 # Décompresser l'archive
@@ -54,16 +54,16 @@ S'il n'y a aucun message d'erreur, essayer d'accéder à Elasticsearch depuis le
 
 Si Elasticsearch ne fonctionne pas, parce que le port est déjà pris, vous pouvez le changer : > 1000 si non root, sinon libre (dans le fichier `conf/elasticsearch.yml`, décommentez la ligne `#http.port: 9200`, en précisant votre port)
 
-Si tout fonctionne bien, quitter le processur (CTRL+C), et lancer Elaticsearch en tant que daemon (il fonctionnera en arrière plan) avec la commande:
+Si tout fonctionne bien, quitter le processus (CTRL+C), et lancer Elaticsearch en tant que daemon (il fonctionnera en arrière-plan) avec la commande:
 
 ```bash
 JAVA_HOME="" ./bin/elasticsearch -d
 ```
 
-Pour l'**éteindre**, vous pourrez faire, à tous moment:
+Pour l'**éteindre**, vous pourrez faire, à tout moment:
 
 ```bash
-# Récuperation du pid du processus
+# Récupération du pid du processus
 # Il s'agira de la deuxième colonne
 # valentin >19860<  2689 85 09:43 pts/5    00:00:40 /home/valentin/elasticsearch-7.11.1/jdk/bin/java..
 ps -eaf | grep elasticsearch | grep -v grep
@@ -80,10 +80,10 @@ tail -f logs/elasticsearch.log
 
 ## 2. Installation de Kibana
 
-Ouvrez un shell et taper les commandes suivantes:
+Ouvrez un shell et tapez les commandes suivantes:
 
 ```bash
-# Téléhcharger l'archive contenant logstash
+# Télécharger l'archive contenant logstash
 wget https://artifacts.elastic.co/downloads/kibana/kibana-7.11.1-linux-x86_64.tar.gz -O kibana.tar.gz
 
 # Décompresser l'archive
@@ -110,18 +110,18 @@ Si vous n'avez pas d'erreurs, une fois le message suivant affiché :
 
 Vous aurez accès à Kibana depuis un navigateur web à l'adresse suivante : http://localhost:5601.
 
-Si vous avez un problème de port déjà utilisé, décommenter, dans le fichier `config/kibana.yml`, la ligne `#server.port: 5601`, en en choisisant un autre.
+Si vous avez un problème de port déjà utilisé, documenté, dans le fichier `config/kibana.yml`, la ligne `#server.port: 5601`, en en choisissant un autre.
 
 Pour lancer Kibana en temps que daemon, vous pouvez utiliser la commande:
 
 ```bash
 nohup ./bin/kibana &
-# N'oublier pas de récuperer le pid du daemon
+# N'oubliez pas de récupérer le pid du daemon
 # Par exemple
 # [1] 23421
 ```
 
-Pour l'arréter à tout moment, même principe que pour Elasticsearch, mais nous allons nous servir du pid précédemment récupéré:
+Pour l'arrêter à tout moment, même principe que pour Elasticsearch, mais nous allons nous servir du pid précédemment récupéré:
 
 ```bash
 kill -9 23421
@@ -129,8 +129,8 @@ kill -9 23421
 
 ## Suite
 
-A partir de là, vous pouvez essayer de **reproduire les TP Logstash** que nous avons fait dans le [TP 2](tp-2.md?id=tp-2), en modifiant **l'output Elasticsearch** avec l'url pour Elasticsearch de votre cluster local!
+A partir de là, vous pouvez essayer de **reproduire les TP Logstash** que nous avons faits dans le [TP 2](tp-2.md?id=tp-2), en modifiant **l'output Elasticsearch** avec l'URL pour Elasticsearch de votre cluster local!
 
-En plus d'un url différent, il vous faudra:
+En plus d'une URL différente, il vous faudra:
 - supprimer le nom d'utilisateur / mot de passe (le cluster local n'est pas authentifié)
-- supprimer les paramètres concernant le TLS (TLS désactiver par défaut)
+- supprimer les paramètres concernant le TLS (TLS désactivé par défaut)

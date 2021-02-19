@@ -1,38 +1,38 @@
 # Architecture de l'infrastructure
 
-## Architecture des composants d'un server
+## Architecture des composants d'un serveur
 
-Dans chaque serveurs, les logiciels suivant sont installés:
+Dans chaque serveur, les logiciels suivants sont installés:
 
 **Pour les éléments principaux**:
 
-- [Elasticsearch](https://www.elastic.co/fr/elasticsearch/): base de donnée NoSQL, avec moteur de recherche distribué
+- [Elasticsearch](https://www.elastic.co/fr/elasticsearch/): base de données NoSQL, avec moteur de recherche distribué
 - [Kibana](https://www.elastic.co/fr/kibana/): interface web pour la visualisation des données Elasticsearch
 - [Nginx](https://www.nginx.com/): Serveur web haute performance
-- [Redis](https://redis.io/): base de donnée stockant les données en mémoire
+- [Redis](https://redis.io/): base de données stockant les données en mémoire
 
 **Pour les outils de monitoring**:
 
-- [Filebeat](https://www.elastic.co/fr/beats/filebeat): Agent de transfer de logs
+- [Filebeat](https://www.elastic.co/fr/beats/filebeat): Agent de transfert de logs
 - [Metricbeat](https://www.elastic.co/fr/beats/metricbeat): Agent de collecte de métriques
 - [Heartbeat](https://www.elastic.co/fr/beats/heartbeat): Moniteur de surveillance (http, tcp, ...)
 
-Les **flux de communications** sont telles qu'indiqués sur le schéma ci-dessous:
+Les **flux de communications** sont comme indiqué sur le schéma ci-dessous: 
 
-![Architecture des composants d'un server](images/internal_server_architecture.png)
+![Architecture des composants d'un serveur](images/internal_server_architecture.png)
 
 Seuls Elasticsearch, Nginx & Redis sont accessibles depuis l'extérieur du serveur.
 
-## Architecture global et interconnection des composants
+## Architecture globale et interconnexion des composants
 
-En plus de l'échelle individuelle, nous devons considérer l'architecture global, car celle-ci est très interconnecté.
+En plus de l'échelle individuelle, nous devons considérer l'architecture globale, car celle-ci est très interconnectée.
 
-- Les différents **noeuds Elasticsearch** forment un clusteur 3 noeuds, avec un tolérence de faute à n - 1
+- Les différents **noeuds Elasticsearch** forment un clusteur 3 noeuds, avec une tolérance de faute à n - 1
     - Si nous perdons un noeud, le cluster reste fonctionnel
 - Les 3 **instances Kibana** sont toutes configurées pour communiquer avec **chacun des noeuds** elasticsearch
-    - Tant qu'une instance est fonctionnelle, nous pourrons visualisez les données
-- Les 3 **instances Nginx** sont configuré en tant que de [proxy inverse](https://frwikipedia.org/wiki/Proxy_inverse) et [repartiteur de charge](https://fr.wikipedia.org/wiki/R%C3%A9partition_de_charge) pour les instances Kibana. Cela signifie que si une des instances Kibana tombe, une autre prendra le relais, et cela transparent pour l'utilisateur
-- Les 3 **instances Redis**, quand-à elles, sont totalement **indépendantes** : leur état n'as aucune influence sur le reste de l'architecture
+    - Tant qu'une instance est fonctionnelle, nous pourrons visualiser les données
+- Les 3 **instances Nginx** sont configurées en tant que de [proxy inverse](https://frwikipedia.org/wiki/Proxy_inverse) et [répartiteur de charge](https://fr.wikipedia.org/wiki/R%C3%A9partition_de_charge) pour les instances Kibana et Elasticsearch. Cela signifie que si une des instances Kibana, une autre prendra le relais, et cela transparents pour l'utilisateur. Il en est de même pour Elasticsearch.
+- Les 3 **instances Redis**, quant à elles, sont totalement **indépendantes** : leur état n'a aucune influence sur le reste de l'architecture 
 
 Ci dessous un schéma simplifié de l'architecture (certaines flèches sont manquantes, pour gagner en clarté):
 
