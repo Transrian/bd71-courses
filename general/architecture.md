@@ -32,7 +32,7 @@ En plus de l'échelle individuelle, nous devons considérer l'architecture globa
 - Les 3 **instances Kibana** sont toutes configurées pour communiquer avec **chacun des noeuds** elasticsearch
     - Tant qu'une instance est fonctionnelle, nous pourrons visualiser les données
 - Les 3 **instances Nginx** sont configurées en tant que de [proxy inverse](https://frwikipedia.org/wiki/Proxy_inverse) et [répartiteur de charge](https://fr.wikipedia.org/wiki/R%C3%A9partition_de_charge) pour les instances Kibana et Elasticsearch. Cela signifie que si une des instances Kibana, une autre prendra le relais, et cela transparents pour l'utilisateur. Il en est de même pour Elasticsearch.
-- Les 3 **instances Redis**, quant à elles, sont totalement **indépendantes** : leur état n'a aucune influence sur le reste de l'architecture 
+- Les 3 **instances Redis**, quant à elles, sont totalement **indépendantes** : elles ne font pas partie de la stack, mais seront utilisé dans certains TPs.
 
 Ci dessous un schéma simplifié de l'architecture (certaines flèches sont manquantes, pour gagner en clarté):
 
