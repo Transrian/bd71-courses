@@ -101,6 +101,9 @@ pipeline.ordered: auto
 # Log level
 log.level: info
 
+# Nombre de worker pour la pipelines
+pipeline.workers: 1
+
 # Chemin vers les fichiers de logs
 path.logs: "./logs"
 ```
