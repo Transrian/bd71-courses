@@ -96,12 +96,12 @@ Recréons le fichier de configuration logstash `logstash.yml` situé dans le dos
 path.data: "./data2"
 
 # Si les évènements en sortie doivent-être ordonné ou non
-pipeline.ordered: auto
+pipeline.ordered: true
 
 # Log level
 log.level: info
 
-# Nombre de worker pour la pipelines
+# Nombre de worker pour pour chaque pipeline
 pipeline.workers: 1
 
 # Chemin vers les fichiers de logs
