@@ -423,7 +423,7 @@ Même processus.
 
 ### 3. Questions ouvertes
 
-Qui seront discutés à la fin du tp:
+Qui seront discutés à la fin du tp suivant:
 
 - Est-ce que la transformation des données est simple ?
 - Les données de l'exercice 2.3 et 2.5 sont les mêmes : lesquelles sont plus simples à traiter ? Et pourquoi ?

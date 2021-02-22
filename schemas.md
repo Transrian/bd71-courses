@@ -120,17 +120,18 @@ digraph f {
     "Kibana" -> "Elasticsearch"
     "Nginx" -> "Kibana"
 
-    "Filebeat" -> "Redis" [color=lightsalmon1]
-    "Kibana" -> "Filebeat" [color=lightsalmon1]
+    "Nginx" -> "Filebeat" [color=blueviolet]
+    "Filebeat" -> "Redis" [color=blueviolet]
 
-    "Utilisateur" -> "Nginx" [label="visualisation logs"]
+    "Utilisateur" -> "Nginx"
 
-    "Logstash" -> "Redis" [label="recuperation logs", dir="both", color=lightsalmon1]
+    "Logstash" -> "Redis" [dir="both", color=blueviolet]
     "Logstash" -> "Nginx" [color=lightsalmon1]
     "Nginx" -> "Elasticsearch" [color=lightsalmon1]
 
     subgraph cluster_server {
-        label="Serveur"
+        label="Infrastructure"
+        labeljust="l"
         "Elasticsearch" [color=dodgerblue1]
         "Kibana" [color=deeppink]
         "Nginx" [color=darkgreen]
@@ -138,6 +139,22 @@ digraph f {
         "Filebeat"
         
     }
+    
+}
+```
+
+## Buffered reader schema short
+
+
+```dot {engine="dot"}
+digraph f {
+    rankdir=LR;
+
+    "Elasticsearch" [color=dodgerblue1]
+    "Redis" [color=darkgoldenrod2]
+
+    "Redis" -> "Logstash" [dir=back]
+    "Logstash" -> "Elasticsearch" [label="(A travers Nginx)"]
     
 }
 ```
