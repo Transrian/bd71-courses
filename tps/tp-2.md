@@ -87,11 +87,151 @@ Des exemples d'url (présent sur chaque noeuds), cf. page d'architecture globale
 - **Elasticsearch**: https://serv-bd71-1:9200
 - **Kibana**: https://serv-bd71-1:5601
 
-## 1.1 Ingestion des données dans Elasticsearch
+Comme vous ne serez pas admin sur le cluster Elasticsearch, vos droits sont restreints:
+- nous ne **verrez pas toutes les données** (seulement les votres, ainsi que quelques-unes génériques)
+- vous n'**aurez pas accès** à toutes fonctionnalités Kibana
+
+Vous pourrez **créer, lire, détruire** les données associés à votre nom de groupe, dans les **index** respectant le **pattern** suivant: `<groupeX>-*`
+
+Par exemple, cela signifie, **pour le groupe 3**:
+- il **pourra accéder** ou créer l'index `groupe3-test`
+- il **ne pourra pas accéder** ou créer les index `test` ou `groupe4-test`
+
+## 1 Ingestion des données dans Elasticsearch
 
 Schéma de ce que nous allons réaliser:
 
 ![Architecture simplifier](images/redis_to_es_simplified.png)
 
+Les logs que nous allons récolter et parser sont celles d'un web serveur [Nginx](https://fr.wikipedia.org/wiki/NGINX), donc très similaires au format **Apache logs** que vous avez déjà traité.
 
-fds
+**Redis**, qui va nous servir de **buffer**, possède une **queue**, qui contiendra les logs des serveurs Nginx. Cette clé sera formaté ainsi: `logs-access-<groupX>`
+
+Le but de cette exercice va être d'insérer les données dans **Elasticsearch**, en prenant en compte le **cycle de vie** des données.
+
+### Input & filter Logstash
+
+L'input & le filtre seront **communs** aux deux cas d'usage.
+
+Ils sont accessible sur [cette page](resources/tp-2/logstash_conf.md)
+
+L'**input** est relativement **simple**: 
+  - Pour chaque instance Redis (une par serveur), nous avons un input redis, avec les paramètres associé, afin de lire les valeurs dans la **clé** de stockage.
+  - Le Redis, à travers cette configuration Logstash, est configuré en tant qu'une [queue FIFO](https://fr.wikipedia.org/wiki/File_(structure_de_donn%C3%A9es)) : les premier évènements rentrés seront les premier récupérer par Logstash
+
+Le **filtre**, quand à lui, est **beaucoup plus complexe**. Même si le format est très similaire aux logs Apache que nous avons vu le TP précédent, il va couvrir certains uses-cases et besoin plus spécifiques:
+
+- couvrir **plusieurs types de format de log web** (apache, apache combined, nginx, traefik)
+- **formater les données** en format [Elastic ECS](https://www.elastic.co/guide/en/ecs/current/index.html) : une structuration particulière des évènement, recommandé par Elastic
+- Faire une **géolocalisation** du client si possible
+- Séparer l'**url** en sous parties, utilisable dans Kibana
+- Séparer l'[user agent](https://fr.wikipedia.org/wiki/User_agent) client en plusieurs partie
+- Séparer l'[OS](https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27exploitation) client en plusieurs partie
+
+> N'oublier pas de mettre **votre nom de groupe** dans l'input, dans la **key** Redis!
+
+### 1.1 Insertion dans Elasticsearch basique
+
+Dans un premier temps, nous allons just écrire les données venant de Redis dans un unique index Elasticsearch.
+
+Créer une nouvelle **pipeline Logstash**, et ajouter, en plus de l'input & du filter, l'output suivant.
+
+[resources/tp-2/logstash_output_basic.md](resources/tp-2/logstash_output_basic.md ':include')
+
+Si vous n'avez pas d'erreurs:
+
+- Connecter vous dans Kibana
+- Dans le menu, aller dans **Stack Management**, puis dans **Data**, la partie **Index Management**
+- **Vérifier** que l'index que vous avez créer **existe** bien, et que **le nombre de documents** n'est pas égal à zéro
+
+Si tout c'est bien passé, après avoir vérifier de la même manière que l'exemple précédent, vous pouvez continuer.
+
+### 1.2 Index journaliers
+
+Maintenant, nous allons configurer Logstash pour qu'il génère **un index par jour**, afin que nos index ne soient pas trop gros.
+
+En cherchant sur Internet, ou sur la page de documentation de l'[output Elasticsearch](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html) (mais mal indiqué), essayer de réaliser ça, et tester, en **modifiant l'output** de la pipeline précédente!
+
+> Ne pas utiliser ILM pour cette partie
+
+### 1.3 Index gérés par ILM
+
+Avant de pouvoir configurer Logstash pour utiliser ILM, nous devons créer une policy ILM, ce que nous allons faire, depuis Kibana. Allez dans **Stack Management**, puis dans **Data**, la partie **Index Lifecycle Policy**, et **créer une nouvelle policy**, basé sur les paramèters de l'image ci-dessous (adapter, dans le nom de la policy, votre groupe):
+
+![Configuration ILM](images/ilm_creation.png)
+
+**Cette policy va effectuer**:
+- la création d'un nouvel index, si l'ancien à une taille supérieur à 30 Gb, ou à plus de 7 jours. Cette action est appelé un **rollover**.
+- la suppression des anciens index, **7 jours** après le rollover. Ce qui signifie que les données allant dans les index resteront stockés pendant **au moins 7 jours**, pour un **maximum de 14 jours**, selon quand est atteinte la policy.
+
+Une fois la policy créer, il est temps de **configurer la sortie Logstash** (vous pouvez vous baser également sur la configuration précédente).
+
+Pour la configuration de l'output Logstash, je vous invite à vous basez (après avoir lu la doc) de cet [exemple](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-ilm), en adaptant le **rollover alias** et la **policy ilm** à votre configuration. Le **rollover alias** va correspondre au préfix de l'index (cf. explications précédente sur le cycle de vie de la données), vous pouvez utiliser `<groupX>-access_ilm`
+
+Après avoir **vérifier** que vous **ayez bien des données**, nous allons faire un brin de **configuration supplémentaire** sur les indexs, avant de passer à la partie la plus importante, la visualisation des données!
+
+### 1.3 Ajout d'Alias sur les index
+
+Pour pouvoir accéder plus facilement aux données, nous allons créer un [alias](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html) sur les index ILMs.
+
+Celà va se traduire en deux phases:
+- dans un premier temps, nous allons **créer un index template**, associé à l'index pattern de nos index, qui s'appliquera lors de la **création des nouveaux index**
+- dans un second temps, nous allons **appliquer** l'alias sur **le ou les index actuels**, afin de pouvoir l'utiliser immédiatement
+
+Pour mettre en place un template, nous allons nous rendre dans la partie **Dev Tools**, qui va nous permettre d'executer des commandes habituellement accesible par API sur le clusteur Elasticsearch.
+
+Nous allons effectuer la commande suivante (après avoir remplacer les valeurs): 
+
+```json
+PUT _template/groupe3_access
+{
+    "order" : 0,
+    "index_patterns" : [
+      "groupe3-acces_ilm-*"
+    ],
+    "settings" : {
+      "index" : {
+        "number_of_shards" : "3",
+        "number_of_replicas" : "1"
+      }
+    },
+    "mappings" : { },
+    "aliases" : { 
+      "GROUPE3_ACCESS": {}
+    }
+}
+```
+
+Celle-ci **va nous permettre**, pour les nouveaux index se créant, de définir:
+- un alias (ici *GROUPE3_ACCESS*)
+- un nombre de shards
+- un nombre de replicas
+
+Pour appliquer l'**alias** sur nos **index actuels**, rien de plus simple, cette commande suffit:
+
+```
+PUT groupe3-access_ilm-*/_alias/GROUPE3_ACCESS
+```
+
+## 2. Dashboard de suivis des logs web
+
+Maintenant que nous avons vu les **bases de l'ingestion de données** dans Elasticsearch, nous allons étudier la partie la plus intéressante, la **visualisation de données**!
+
+Pour **créer une dashboard**, plusieurs éléments sont impliqués:
+- Un **index pattern Kibana**, qui va correspondre aux données utilisées. Comme nous venons de mettre en place un **alias**, nous l'utiliserons pour créer le pattern
+- Des **visualisations**, qui correspondent à un élément unique
+- Des **saved search**, qui correspondent à une **vue** des logs
+- Enfin, les **dashboards** en elles-mêmes, qui **regroupent** des visualisations & saved-search
+
+Pour créer un **index pattern Kibana**, allez dans Stack Management > Kibana > Index Patterns, et:
+- Créer en un nouveau
+- L'**Index pattern name** correspond au nom des indexes ou alias, nous allons donc entrer notre alias précédement créer, **GROUPEX_ACCESS**)
+- Le **time field** correspond au champs date utilisé par défaut dans toutes les visualisations : dans notre cas, le champs date correspondant à la génération de l'évènement s'apelle `@timestamp`
+
+Une fois créer, vous pouvez **aller** dans la partie **Discover** de Kibana, ou vous verrez vos logs!
+
+Ci-dessous un exemple de ce que vous devriez voir:
+
+**TODO PICTURE**
+
+### Visulisations Kibana
