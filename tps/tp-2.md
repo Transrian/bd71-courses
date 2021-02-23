@@ -97,6 +97,8 @@ Par exemple, cela signifie, **pour le groupe 3**:
 - il **pourra accéder** ou créer l'index `groupe3-test`
 - il **ne pourra pas accéder** ou créer les index `test` ou `groupe4-test`
 
+Il en est de même pour la création et consultation des **alias**: la différence est qu'ils **doivent-être en majuscule**, par exemple *GROUPE3_ACCESS*
+
 ## 1 Ingestion des données dans Elasticsearch
 
 Schéma de ce que nous allons réaliser:
@@ -183,11 +185,11 @@ Pour mettre en place un template, nous allons nous rendre dans la partie **Dev T
 Nous allons effectuer la commande suivante (après avoir remplacer les valeurs): 
 
 ```json
-PUT _template/groupe3_access
+PUT _template/groupeX_access
 {
     "order" : 0,
     "index_patterns" : [
-      "groupe3-acces_ilm-*"
+      "groupeX-acces_ilm-*"
     ],
     "settings" : {
       "index" : {
@@ -197,13 +199,13 @@ PUT _template/groupe3_access
     },
     "mappings" : { },
     "aliases" : { 
-      "GROUPE3_ACCESS": {}
+      "GROUPEX_ACCESS": {}
     }
 }
 ```
 
 Celle-ci **va nous permettre**, pour les nouveaux index se créant, de définir:
-- un alias (ici *GROUPE3_ACCESS*)
+- un alias (ici *GROUPEX_ACCESS*)
 - un nombre de shards
 - un nombre de replicas
 
@@ -232,6 +234,6 @@ Une fois créer, vous pouvez **aller** dans la partie **Discover** de Kibana, ou
 
 Ci-dessous un exemple de ce que vous devriez voir:
 
-**TODO PICTURE**
+![Kibana discover](images/expected_picture_dataflow.png)
 
 ### Visulisations Kibana
