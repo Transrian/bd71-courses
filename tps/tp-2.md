@@ -215,25 +215,10 @@ Pour appliquer l'**alias** sur nos **index actuels**, rien de plus simple, cette
 PUT groupe3-access_ilm-*/_alias/GROUPE3_ACCESS
 ```
 
-## 2. Dashboard de suivis des logs web
+Pour **vérifier que notre alias existe désormais**, nous allons faire une recherche, simple, en l'utilisant:
 
-Maintenant que nous avons vu les **bases de l'ingestion de données** dans Elasticsearch, nous allons étudier la partie la plus intéressante, la **visualisation de données**!
+```json
+GET PROF_ACCESS/_search
+```
 
-Pour **créer une dashboard**, plusieurs éléments sont impliqués:
-- Un **index pattern Kibana**, qui va correspondre aux données utilisées. Comme nous venons de mettre en place un **alias**, nous l'utiliserons pour créer le pattern
-- Des **visualisations**, qui correspondent à un élément unique
-- Des **saved search**, qui correspondent à une **vue** des logs
-- Enfin, les **dashboards** en elles-mêmes, qui **regroupent** des visualisations & saved-search
-
-Pour créer un **index pattern Kibana**, allez dans Stack Management > Kibana > Index Patterns, et:
-- Créer en un nouveau
-- L'**Index pattern name** correspond au nom des indexes ou alias, nous allons donc entrer notre alias précédement créer, **GROUPEX_ACCESS**)
-- Le **time field** correspond au champs date utilisé par défaut dans toutes les visualisations : dans notre cas, le champs date correspondant à la génération de l'évènement s'apelle `@timestamp`
-
-Une fois créer, vous pouvez **aller** dans la partie **Discover** de Kibana, ou vous verrez vos logs!
-
-Ci-dessous un exemple de ce que vous devriez voir:
-
-![Kibana discover](images/expected_picture_dataflow.png)
-
-### Visulisations Kibana
+Le résultat devrait avoir un nombre de **hit** différent de zéro, et vous pouvez avoir un aperçu des premiers évènements dans le résultat.

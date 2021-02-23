@@ -1,4 +1,5 @@
 * [Home](/)
-* [TP 1](/tps/tp-1.md)
-* [TP 2](/tps/tp-2.md)
-* [TP bonus](/tps/tp-bonus.md)
+* [TP 1 - Introduction à Logstash](/tps/tp-1.md)
+* [TP 2 - Ingestion de données en temps réel](/tps/tp-2.md)
+* [TP 3 - Dashboarding avec Kibana](/tps/tp-3.md)
+* [TP bonus 1 - Installation ELK local](/tps/tp-bonus.md)
