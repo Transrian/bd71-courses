@@ -1,4 +1,4 @@
-# TP 1
+# TP 1 (4h)
 
 **Introduction à la collecte et au traitement des données.**
 
@@ -423,7 +423,7 @@ Même processus.
 
 ### 3. Questions ouvertes
 
-Qui seront discutés à la fin du tp suivant:
+Qui seront discutés au début du tp suivant:
 
 - Est-ce que la transformation des données est simple ?
 - Les données de l'exercice 2.3 et 2.5 sont les mêmes : lesquelles sont plus simples à traiter ? Et pourquoi ?

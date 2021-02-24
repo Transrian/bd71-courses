@@ -1,4 +1,4 @@
-# TP 2
+# TP 2 (2h)
 
 **Collecte et traitement de logs en temps réel.**
 
@@ -218,7 +218,17 @@ PUT groupe3-access_ilm-*/_alias/GROUPE3_ACCESS
 Pour **vérifier que notre alias existe désormais**, nous allons faire une recherche, simple, en l'utilisant:
 
 ```json
-GET PROF_ACCESS/_search
+GET GROUPEX_ACCESS/_search
 ```
 
 Le résultat devrait avoir un nombre de **hit** différent de zéro, et vous pouvez avoir un aperçu des premiers évènements dans le résultat.
+
+> Il est recommandé de **laisser le Logstash fonctionner**, ça vous permettra d'avoir des données en permanence, ce qui sera plus simple pour le TP3
+
+## 2. Question ouvertes
+
+Qui seront discutés au début du tp suivant:
+
+- Quelle est le plus gros désaventage d'ILM ?
+- Quel est le problème pour la génération d'index journalier / mensuels, pour un stockage courte durée ?
+- Quels sont les paramètres à prendre en compte, pour la création d'index (ILM ou journalier / mensuels), pour une application ?

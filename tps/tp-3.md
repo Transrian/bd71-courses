@@ -1,4 +1,4 @@
-# Prise en main de Kibana
+# Prise en main de Kibana (2h)
 
 Maintenant que nous avons vu les **bases de l'ingestion de données** dans Elasticsearch, nous allons étudier la partie la plus intéressante, la **visualisation de données**!
 
@@ -137,21 +137,61 @@ Quasiment tous les éléments et métriques des visualisation sont **cliquable**
 
 ## 1. Dashboard de suivis des logs web
 
-Pour **créer une dashboard**, plusieurs éléments sont impliqués:
-- Un **index pattern Kibana**, qui va correspondre aux données utilisées. Comme nous venons de mettre en place un **alias**, nous l'utiliserons pour créer le pattern
-- Des **visualisations**, qui correspondent à un élément unique
-- Des **saved search**, qui correspondent à une **vue** des logs
-- Enfin, les **dashboards** en elles-mêmes, qui **regroupent** des visualisations & saved-search
+Vous allez réaliser une dashboard de suivis de nos serveurs web Nginx (cf. l'[architecture  de l'infrastructure]((/general/architecture.md))).
 
-Pour créer un **index pattern Kibana**, allez dans Stack Management > Kibana > Index Patterns, et:
-- Créer en un nouveau
-- L'**Index pattern name** correspond au nom des indexes ou alias, nous allons donc entrer notre alias précédement créer, **GROUPEX_ACCESS**)
-- Le **time field** correspond au champs date utilisé par défaut dans toutes les visualisations : dans notre cas, le champs date correspondant à la génération de l'évènement s'apelle `@timestamp`
+Les logs sont celles de serveur web (comme étudié lors du précédent exercice), avec quelques nouveaux champs : ci-dessous la structure de la donnée:
 
-Une fois créer, vous pouvez **aller** dans la partie **Discover** de Kibana, ou vous verrez vos logs!
+| Champ                      | Type   | Description                                                    | Exemple                                                   |
+|----------------------------|--------|----------------------------------------------------------------|-----------------------------------------------------------|
+| @timestamp                 | date   | Date de l'évènement                                            | 2021-02-24T22&#58;10&#58;05.000Z                                  |
+| proxy.access.frontend_name | string | Nom du service frontend                                        | kibana                                                    |
+| proxy.access.request_count | nombre | Nombre de queries sur le backend depuis le dernier redémarrage | 7                                                         |
+| proxy.access.backend_url   | string | Url du backend utilisé                                         | 127.0.1.1:32989                                           |
+| message                    | string | Message d'origine                                              | 192.168.121.4 - - [24/Feb/2021&#58;22&#58;10&#58;05 +0000] \"POST ... |
+| http.version               | nombre | Version http                                                   | 1.1                                                       |
+| http.response.status_code  | nombre | Status code retourné                                           | 200                                                       |
+| http.response.body.bytes   | nombre | Taille du body de la réponse retourné (bytes)                  | 335                                                       |
+| http.request.method        | string | Verbe HTTP associé à la requête                                | POST                                                      |
+| http.request.referer       | string | Origine de la requête                                          | https://homelab:5601/s/prof/app/discover                  |
+| user.name                  | string | Utilisateur utilisé pour la requête                            | prof                                                      |
+| url.type                   | string | Caractéritique de la ressource intéressé : server / ressources | server                                                    |
+| url.original               | string | Url original de la requête                                     | /s/prof/api/saved_objects/_bulk_get                       |
+| url.path                   | string | Url simplifié de la requête (supression de l'host si présent)  | /s/prof/api/saved_objects/_bulk_get                       |
+| user_agent.original        | string | User agent complet                                             | Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36..      |
+| user_agent.device.name     | string | Type de périphérique utilisé                                   | ther                                                      |
+| user_agent.os.name         | string | Nom de l'OS utilisé                                            | Linux                                                     |
+| user_agent.version         | string | Version de l'user agent                                        | 88.0.4324                                                 |
+| user_agent.name            | string | Nom de l'user agent                                            | Chrome                                                    |
+| event.created              | date   | Date d'insertion de l'évènement dans Elasticsearch             | 2021-02-24T22&#58;10&#58;05.254Z                                  |
+| event.duration             | nombre | Durée de la requête (nanosecondes)                             | 27000                                                     |
+| event.category             | string | Catégorie ECS de l'évènement                                   | WEB                                                       |
+| event.outcome              | string | Si l'évènement correspond à un succès ou un echec              | success                                                   |
+| event.kind                 | string | Genre ECS de l'évènement                                       | event                                                     |
+| event.type                 | string | Type ECS de l'évènement                                        | access                                                    |
+| source.address             | string | Hostname (si résolvable) ou IP du client                       | workstation                                               |
+| source.ip                  | string | IP du client                                                   | 192.168.121.4                                             |
 
-Ci-dessous un exemple de ce que vous devriez voir:
+Dans l'ordre, pour créer votre dashboard, il faudra:
+- créer un index pattern (et vérifier que vous ayez bien des données dans le Discover)
+- créer les visualisations
+- créer les saved search (discover)
+- créer la dashboard
 
-![Kibana discover](resources/tp-3/images/expected_picture_dataflow.png)
+Si vous ne savez par par où commencer, vous pouvez essayer de repliquer, en partie ou totalement, la dashboard suivante:
 
-TODO
+![Interface du discover](resources/tp-3/images/full_dashboard.png)
+
+## 2. Question ouvertes
+
+Qui seront discutés au début du tp suivant:
+
+*Si vous aviez des données en continu, sur les deux heures du TP*
+
+- Des problèmes se sont-ils produits ? Et si oui lesquels ?
+  - Sur un serveur ?
+  - Sur Kibana ?
+  - Sur Elasticsearch ?
+  - Sur Nginx ?
+- La répartion des queries par host vous-semble normal ? Comment l'expliquer, si on reprend les schémas d'architecture globale ?
+    - Comment pourrait-on faire pour corriger le problème, s'il y en a un ?
+
