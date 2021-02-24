@@ -30,7 +30,6 @@ input {
 # Filter
 
 ```ruby
-
 filter {
   
   # If start by an ip followed with a space
@@ -42,11 +41,11 @@ filter {
         "NOT_QUOTE" => '[^"]+'
         "BASE_HTTP" => '%{IPORHOST:[source][address]} - %{DATA:[user][name]} \[%{HTTPDATE:[apache][access][time]}\] "(?:%{WORD:[http][request][method]} %{NOTSPACE:[url][original]}(?: HTTP/%{NUMBER:[http][version]:float})?|%{DATA:rawrequest})" (?:-|%{NUMBER:[http][response][status_code]:int}) (?:-|%{NUMBER:[http][response][body][bytes]:int})'
         "COMBINE_HTTP" => '%{BASE_HTTP} "%{NOT_QUOTE:[http][request][referrer]}" "%{NOT_QUOTE:[user_agent][original]}"'
-        "TRAEFIK_ACCESS" => '%{COMBINE_HTTP} %{NUMBER:[traefik][access][request_count]:int} "%{NOTSPACE:[traefik][access][frontend_name]}" "%{NOTSPACE:[traefik][access][backend_url]}" %{NUMBER:[event][duration]:int}'
+        "PROXY_ACCESS" => '%{COMBINE_HTTP} %{NUMBER:[proxy][access][request_count]:int} "%{NOTSPACE:[proxy][access][frontend_name]}" "%{NOTSPACE:[proxy][access][backend_url]}" %{NUMBER:[event][duration]:float}'
       }
       match => {
         "message" => [
-          "%{TRAEFIK_ACCESS}",
+          "%{PROXY_ACCESS}",
           "%{COMBINE_HTTP}",
           "%{BASE_HTTP}"
         ]
@@ -267,17 +266,11 @@ filter {
 
     }
     
-    # We remove two fields no more usefull
     if [tags] and (![tags][0]) {
       mutate {
         remove_field => ["tags"]
       }
     }
-    
-    mutate {
-     remove_field => ["source"]
-   }
-
     
   }
   
