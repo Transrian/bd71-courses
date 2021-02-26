@@ -177,7 +177,7 @@ Dans l'ordre, pour créer votre dashboard, il faudra:
 - créer les saved search (discover)
 - créer la dashboard
 
-Si vous ne savez par par où commencer, vous pouvez essayer de répliquer, en partie ou totalement, la dashboard suivante:
+Vous pouvez essayer de répliquer, en partie ou totalement, la dashboard suivante:
 
 ![Interface du discover](resources/tp-3/images/full_dashboard.png)
 
