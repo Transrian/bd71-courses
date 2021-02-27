@@ -395,6 +395,8 @@ Si vous le testez sans modification, certains messages auront un **tags** `_grok
 
 > Aide: Le mot clé est dans le titre
 
+**Solution**: [ici](resources/tp-1/answer/2.md)
+
 #### 2.3 Apache access logs
 
 Nouveau format de logs, il faudra donc construire le filtre depuis le début!
@@ -405,6 +407,7 @@ En vous servant de la [documentation logging apache](https://httpd.apache.org/do
 
 > Ne PAS utiliser le [grok pattern](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html#_description_129) `COMBINEDAPACHELOG`
 
+**Solution**: [ici](resources/tp-1/answer/3.md)
 #### 2.4 Data venant d'un CSV
 
 Nous pouvons traiter de nombreux types de données avec Logstash, dont des [CSV](https://fr.wikipedia.org/wiki/Comma-separated_values)!
@@ -413,6 +416,8 @@ Nous pouvons traiter de nombreux types de données avec Logstash, dont des [CSV]
 
 Réaliser le filter, et tester
 
+**Solution**: [ici](resources/tp-1/answer/4.md)
+
 #### 2.5 JSON logs
 
 Nous avons maintenant des logs web, dans un format [JSON](https://fr.wikipedia.org/wiki/JavaScript_Object_Notation).
@@ -420,6 +425,8 @@ Nous avons maintenant des logs web, dans un format [JSON](https://fr.wikipedia.o
 [resources/tp-1/web_log_json.md](resources/tp-1/web_log_json.md ':include')
 
 Même processus.
+
+**Solution**: [ici](resources/tp-1/answer/5.md)
 
 ### 3. Questions ouvertes
 
