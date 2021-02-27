@@ -3,4 +3,4 @@
 * [TP 2 - Ingestion de données en temps réel](/tps/tp-2.md)
 * [TP 3 - Dashboarding avec Kibana](/tps/tp-3.md)
 * [TP bonus 1 - Installation ELK local](/tps/tp-bonus.md)
-* [TP bonus 2 - Elasticsearch queries](/tps/tp-bonus.md)
+* [TP bonus 2 - Elasticsearch queries](/tps/tp-bonus-2.md)
