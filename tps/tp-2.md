@@ -189,7 +189,7 @@ PUT _template/groupeX_access
 {
     "order" : 0,
     "index_patterns" : [
-      "groupeX-acces_ilm-*"
+      "groupeX-access_ilm-*"
     ],
     "settings" : {
       "index" : {
