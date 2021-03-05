@@ -14,8 +14,8 @@ Nous allons utiliser une fonctionnalité de Kibana allant nous permettre d'**ins
 Pour ce faire, aller dans la partie **Machine Learning** (dans Analytics), et utiliser la fonction **Import data**.
 
 Nous allons importer **un fichier à la fois**.
-- Pour les **données mondiales**, il n'y a pas de problème de reconnaissance du fichier, une fois le schéma par défaut trouver, aller à l'étape suivante, et entrer un nom d'index, comme `<groupeX>-covid`
 - Pour les **données de la France**, il faut augmenter (une fois la première analyse faite), le **nombre de ligne à analyser** de 1000 (défaut) à 100000 (sinon, le département est considéré comme un nombre, au lieu d'une chaine de caractère). Vous pouvez appeler l'index résultat `<groupeX>-covid-france`
+- Pour les **données mondiales**, même processsur, changer le **nombre de ligne à analyser** de 1000 (défaut) à 10000, puis aller à l'étape suivante, et entrer un nom d'index, comme `<groupeX>-covid`
 
 Si vous regarder vos **index pattern Kibana**, vous pouvez voir qu'ils ont été créer, lors de l'insertion des données, donc vous n'avez rien de plus à faire!
 
@@ -24,6 +24,8 @@ Si vous regarder vos **index pattern Kibana**, vous pouvez voir qu'ils ont été
 ### 2.1 Schéma des données
 
 A l'heure actuelle, la structure des différents dataset est la suivante:
+
+#### 2.1.1 Données mondiales
 
 **Données mondiales** ([source](https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-codebook.csv)):
 
@@ -89,6 +91,7 @@ A l'heure actuelle, la structure des différents dataset est la suivante:
 |life_expectancy                      |James C. Riley, Clio Infra, United Nations Population Division                                                                   |Life expectancy at birth in 2019                                                                                                                                                                                                                                                                                                                 |
 |human_development_index              |United Nations Development Programme (UNDP)                                                                                      |A composite index measuring average achievement in three basic dimensions of human development—a long and healthy life, knowledge and a decent standard of living. Values for 2019, imported from http://hdr.undp.org/en/indicators/137506                                                                                                       |
 
+#### 2.1.1 Données Françaises
 
 Pour les données de la France ([source](https://www.data.gouv.fr/fr/datasets/synthese-des-indicateurs-de-suivi-de-lepidemie-covid-19/)):
 
@@ -119,3 +122,27 @@ Pour les données de la France ([source](https://www.data.gouv.fr/fr/datasets/sy
 | tx_incid     | Taux d'incidence                                                                                                                          |
 | TO           | Taux d'occupation                                                                                                                         |
 | R            | Facteur de reproduction du virus                                                                                                          |
+
+### 2.2 Dashboards
+
+Réaliser deux dashboard, une pour chaque jeu de données:
+
+#### 2.2.1 Monde
+
+Faites une dashboard répondant aux questions suivantes (le type de visualisation peut-être indiqué):
+
+- Affichage du **nombre de cas total**, **morts totales**, et du **nombre de vacination total**, dans le monde
+- Suivre l'**évolution** des **nouveaux cas**, **nouvelles morts**, et **nouvelles vaccinations** au **cours du temps**
+- Affichage des **5 pays** avec le plus de **nouveau cas**, et leur évolution au cours du temps
+- Quels sont les **3 pays** avec le plus de **nouveaux cas**, **proportionnellement à leur population** ?
+- Affichage de deux **cartes**, avec le **nombre de cas total** & le **nombre de mort total**, par pays. Quels sont les 3 pays les plus touchés, pour ces deux métriques ?
+
+#### 2.2.2 France
+
+Faites une dashboard répondant aux questions suivantes (le type de visualisation peut-être indiqué):
+
+- Evolution des **hospitalisations** au cours du temps
+- Evolution de **R** au cours du temps
+- Carte, par **département**, avec la moyenne des hospitalisations
+- Quels sont les **trois régions avec le plus d'hospitalisation** ?
+- Dans la région **Territoire de Belfort**, quel est le **département** avec le **plus d'hospitalisation** ?
