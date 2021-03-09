@@ -1,11 +1,11 @@
 # Visualisation de données COVID (2h)
 
-Nous allons, dans ce TP, réalisé des visualisations sur des données que nous connaissons tous .. la **COVID-19**.
+Nous allons, dans ce TP, réaliser des visualisations sur des données que nous connaissons tous .. la **COVID-19**.
 
-Pour ce faire, nous allons utiliser **deux dataset** différents:
+Pour ce faire, nous allons utiliser **deux dataset** différentes:
 
-- Des données avec des informations pour **tous les pays**, depuis de début de l'épidémie. Récupérées et maintenu par [Our World In Data](https://github.com/owid/covid-19-data/tree/master/public/data), le fichier CSV est accesible à l'adresse suivante: https://covid.ourworldindata.org/data/owid-covid-data.csv
-- Des données **spécifique à la France**, mis en OpenSource par le [gouvernement Français](https://www.data.gouv.fr/fr/datasets/synthese-des-indicateurs-de-suivi-de-lepidemie-covid-19/), dispible à l'adresse suivante: https://www.data.gouv.fr/fr/datasets/r/5c4e1452-3850-4b59-b11c-3dd51d7fb8b5
+- Des données avec des informations pour **tous les pays**, depuis de début de l'épidémie. Récupérées et maintenu par [Our World In Data](https://github.com/owid/covid-19-data/tree/master/public/data), le fichier CSV est accessible à l'adresse suivante: https://covid.ourworldindata.org/data/owid-covid-data.csv
+- Des données **spécifiques à la France**, mis en OpenSource par le [gouvernement français](https://www.data.gouv.fr/fr/datasets/synthese-des-indicateurs-de-suivi-de-lepidemie-covid-19/), dispible à l'adresse suivante: https://www.data.gouv.fr/fr/datasets/r/5c4e1452-3850-4b59-b11c-3dd51d7fb8b5
 
 ## 1. Insertion des données dans Elasticsearch
 
@@ -14,16 +14,16 @@ Nous allons utiliser une fonctionnalité de Kibana allant nous permettre d'**ins
 Pour ce faire, aller dans la partie **Machine Learning** (dans Analytics), et utiliser la fonction **Import data**.
 
 Nous allons importer **un fichier à la fois**.
-- Pour les **données de la France**, il faut augmenter (une fois la première analyse faite), le **nombre de ligne à analyser** de 1000 (défaut) à 100000 (sinon, le département est considéré comme un nombre, au lieu d'une chaine de caractère). Vous pouvez appeler l'index résultat `<groupeX>-covid-france`
-- Pour les **données mondiales**, même processsur, changer le **nombre de ligne à analyser** de 1000 (défaut) à 10000, puis aller à l'étape suivante, et entrer un nom d'index, comme `<groupeX>-covid`
+- Pour les **données de la France**, il faut augmenter (une fois la première analyse faite), le **nombre de lignes a analysé** de 1000 (défaut) à 100000 (sinon, le département est considéré comme un nombre, au lieu d'une chaine de caractère). Vous pouvez appeler l'index résultat. `<groupeX>-covid-france`
+- Pour les **données mondiales**, même processus, changer le **nombre de ligne à analyser** de 1000 (défaut) à 10000, puis aller à l'étape suivante, et entrer un nom d'index, comme `<groupeX>-covid`
 
-Si vous regarder vos **index pattern Kibana**, vous pouvez voir qu'ils ont été créer, lors de l'insertion des données, donc vous n'avez rien de plus à faire!
+Si vous regarder vos **index pattern Kibana**, vous pouvez voir qu'ils ont été créés, lors de l'insertion des données, donc vous n'avez rien de plus à faire!
 
 ## 2. Visualisations des données
 
 ### 2.1 Schéma des données
 
-A l'heure actuelle, la structure des différents dataset est la suivante:
+À l'heure actuelle, la structure des différents dataset est la suivante:
 
 #### 2.1.1 Données mondiales
 
@@ -135,24 +135,24 @@ Pour faire une **carte**, vous pouvez utiliser le **champ**:
 
 Réaliser deux dashboard, une pour chaque jeu de données:
 
-> Pour créer des cartes, allez dans l'onglet **Maps**, ajouter un **layer**, de type **Choropleth** (et séléctionner la zone adapté, avec les informations sur l'index). Enfin, changer la **métrique**, dans **Term join**, pour représenter la valeur que vous souhaitez
+> Pour créer des cartes, allez dans l'onglet **Maps**, ajouter un **layer**, de type **Choropleth** (et séléctionner la zone adapté, avec les informations sur l'index). Enfin, changer la **métrique**, dans **Term join**, pour représenter la valeur que vous souhaitez.
 
 #### 2.2.1 Monde
 
-Faites une dashboard répondant aux questions suivantes (le type de visualisation peut-être indiqué):
+Faites une dashboard répondant aux questions suivantes (le type de visualisation peut-être, indiqué):
 
-- Affichage du **nombre de cas total**, **morts totales**, et du **nombre de vacination total**, dans le monde
+- Affichage du **nombre de cas total**, **morts totales**, et du **nombre de vaccinations total**, dans le monde
 - Suivre l'**évolution** des **nouveaux cas**, **nouvelles morts**, et **nouvelles vaccinations** au **cours du temps**
-- Affichage des **5 pays** avec le plus de **nouveau cas**, et leur évolution au cours du temps
+- Affichage des **5 pays** avec le plus de **nouveaux cas**, et leur évolution au cours du temps
 - Quels sont les **3 pays** avec le plus de **nouveaux cas**, **proportionnellement à leur population** ?
-- Affichage de deux **cartes**, avec le **nombre de cas total** & le **nombre de mort total**, par pays. Quels sont les 3 pays les plus touchés, pour ces deux métriques ?
+- Affichage de deux **cartes**, avec le **nombre de cas total** & le **nombre de morts total**, par pays. Quels sont les 3 pays les plus touchés, pour ces deux métriques ?
 
 #### 2.2.2 France
 
 Faites une dashboard répondant aux questions suivantes (le type de visualisation peut-être indiqué):
 
-- Evolution des **hospitalisations** au cours du temps
-- Evolution de **R** au cours du temps
+- Évolution des **hospitalisations** au cours du temps
+- Évolution de **R** au cours du temps
 - Carte, par **département**, avec la moyenne des hospitalisations
-- Quels sont les **trois régions avec le plus d'hospitalisation** ?
+- Quelles sont les **trois régions avec le plus d'hospitalisation** ?
 - Dans la région **Territoire de Belfort**, quel est le **département** avec le **plus d'hospitalisation** ?
