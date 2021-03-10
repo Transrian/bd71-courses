@@ -156,6 +156,8 @@ En cherchant sur Internet, ou sur la page de documentation de l'[output Elastics
 
 > Ne pas utiliser ILM pour cette partie
 
+**Solution**: [ici](resources/tp-2/answer/output_daily.md)
+
 ### 1.3 Index géré par ILM
 
 Avant de pouvoir configurer Logstash pour utiliser ILM, nous devons créer une policy ILM, ce que nous allons faire, depuis Kibana. Allez dans **Stack Management**, puis dans **Data**, la partie **Index Lifecycle Policy**, et **créer une nouvelle policy**, basée sur les paramètres de l'image ci-dessous (adapter, dans le nom de la policy, votre groupe):
@@ -171,6 +173,8 @@ Une fois la policy créer, il est temps de **configurer la sortie Logstash** (vo
 Pour la configuration de l'output Logstash, je vous invite à vous basez (après avoir lu la doc) de cet [exemple](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-ilm), en adaptant le **rollover alias** et la **policy ilm** à votre configuration. Le **rollover alias** va correspondre au préfix de l'index (cf. explications précédentes sur le cycle de vie de la donnée), vous pouvez utiliser `<groupX>-access_ilm`
 
 Après avoir **vérifié** que vous **ayez bien des données**, nous allons faire un brin de **configuration supplémentaire** sur les index, avant de passer à la partie la plus importante, la visualisation des données!
+
+**Solution**: [ici](resources/tp-2/answer/output_ilm.md)
 
 ### 1.3 Ajout d'Alias sur les index
 
