@@ -108,7 +108,7 @@ Nous allons essayer de voir s'il y a une **tendance**, que le machine learning d
 
 #### Création du job
 
-Dans la partie **Analytics**, puis **Machine Learning**, nous allons créer un **nouveau job**.
+Dans la partie **Analytics**, **Machine Learning**, puis **Anomaly Detection**, nous allons créer un **nouveau job**.
 
 Sélectionnons ensuite le bon index (`<groupeX>-covid`), et créer on job de type **Single metric**.
 
@@ -218,6 +218,7 @@ Questions:
 
 - Quel modèle est le plus "sérré" ?
 - Quel modèle est le plus précis ? Et pourquoi ?
+- D'après l'algorithme d'apprentissage, les morts vont elles augmentés / diminuer, d'ici 1 semaine ?
 
 **Nouveaux cas par pays**
 

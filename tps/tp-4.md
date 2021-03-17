@@ -155,4 +155,4 @@ Faites une dashboard répondant aux questions suivantes (le type de visualisatio
 - Évolution de **R** au cours du temps
 - Carte, par **département**, avec la moyenne des hospitalisations
 - Quelles sont les **trois régions avec le plus d'hospitalisation** ?
-- Dans la région **Territoire de Belfort**, quel est le **département** avec le **plus d'hospitalisation** ?
+- Dans la région **Bourgogne et Franche-Comté**, quel est le **département** avec le **plus d'hospitalisation** ?
