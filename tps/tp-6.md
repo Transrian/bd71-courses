@@ -76,7 +76,7 @@ Même si le jeu de données est très fortement axé sur les prénoms, les deux 
 - le nombre de naissances par an (=nombre de noms donnés)
 - le nombre de naissances par département par an (nous ne voulons pas la catégorie *autres*)
 
-Après avoir créé l'index pattern Kibana, créer une dashboard contenant une visualisation des ces deux métriques.
+Après avoir créé l'index pattern Kibana (pour `prenoms-france`), créer une dashboard contenant une visualisation des ces deux métriques.
 
 > N'oubliez pas de changer l'interval de temps sur 100 ans!
 
