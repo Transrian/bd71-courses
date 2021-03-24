@@ -74,7 +74,7 @@ C'est un bon exemple de ce que l'on peut trouver dans le monde de l'entreprise :
 
 Même si le jeu de données est très fortement axé sur les prénoms, les deux métriques qui vont nous intéresser sont:
 - le nombre de naissances par an (=nombre de noms donnés)
-- le nombre de naissances par département par an
+- le nombre de naissances par département par an (nous ne voulons pas la catégorie *autres*)
 
 Après avoir créé l'index pattern Kibana, créer une dashboard contenant une visualisation des ces deux métriques.
 
