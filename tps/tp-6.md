@@ -88,7 +88,7 @@ Une fois faites, nous pouvons nous lancer dans la réduction des données! (Stac
 
 ## 2.4 Créations des rollups jobs
 
-Le processus de création d'un job rollups est décomposé en 7 phases:
+Le processus de création d'un job rollups est décomposé en 6 phases:
 
 - **Logistic**: Définition des index d'entrée, de sortie, de le fréquence d'actualisation du job
 - **Date histogram**: Définition du champs date, et de la *période temporelle* d'agrégation des données
