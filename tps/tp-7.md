@@ -73,3 +73,103 @@ Dans cette partie, c'est là que nous allons **définir la requête SQL**. Pour 
 Lorsque nous affichons la **preview**, le résultat (les données utilisable dans notre visualisation) seront affiché dans une table! Comme pour du SQL classique, plus nous récuperons de données, plus la query sera longue, il faut donc faire des requêtes optimisés au possible, afin de récuperer le moins de données que possible!
 
 ![canvas default datasource](images/pannel_canvas_ds_preview.png)
+
+Une fois sauvegardé, dans la partie **Display**, nous avons accès aux options de **Canvas**, qui même si moins nombreuses, permettent de faire sensiblement la même chose que pour Lens.
+
+> La principale différence est que le **split** de Lens est ici appelé **Color**
+
+![canvas default datasource](images/canvas_display_options.png)
+
+La **documentation** de **Canvas** est présent à la page [suivante](https://www.elastic.co/guide/en/kibana/current/canvas.html)
+
+### 2.1 Création d'une dashboard sur les prénoms en France
+
+En nous servans du jeu de donnée du TP précédant (avec l'index pattern `prenoms-france`), nous allons créer un canvas représentant au minimum les élèments suivants:
+
+- Un selecteur de temps (par défaut, sur les 100 dernières années)
+
+En terme de visualisations:
+
+1) Total de naissance de garcon (une colonne, une ligne)
+2) Total de naissance de filles (une colonne, une ligne)
+3) 10 (au moins) prénoms masculins les plus répandus (deux colonnes, multiples lignes)
+4) 10 (au moins) prénoms féminins les plus répandus (deux colonnes, multiples lignes)
+5) 10 département avec le plus de naissances (deux colonnes, multiples lignes)
+6) nombre de naissance par sexe (trois colonnes, multiples lignes)
+7) diversité des colonnes par sexe (trois colonnes, multiples lignes)
+
+> Toutes les **réquêtes SQL** sont faites et présentes dans la partie suivante!
+
+### 2.2 Requêtes SQL à utiliser
+
+**1) Total de naissances de garçons**
+
+```sql
+SELECT sum(nombre)
+FROM "prenoms-france"
+WHERE sexe=1
+```
+
+**2) Total de naissances de filles**
+
+```sql
+SELECT sum(nombre)
+FROM "prenoms-france"
+WHERE sexe=2
+```
+
+**3) 100 prénoms masculins les plus répandus**
+
+```sql
+SELECT prenom, sum(nombre) as total
+FROM "prenoms-france"
+WHERE sexe=1 and prenom != '_PRENOMS_RARES'
+GROUP BY prenom
+ORDER BY 2 DESC
+LIMIT 100
+```
+
+**4) 100 prénoms féminins les plus répandus**
+
+```sql
+SELECT prenom, sum(nombre) as total
+FROM "prenoms-france"
+WHERE sexe=2 and prenom != '_PRENOMS_RARES'
+GROUP BY prenom
+ORDER BY 2 DESC
+LIMIT 100
+```
+
+**5) Les 10 départements avec le plus de naissances**
+
+```sql
+SELECT sum(nombre) as total, departement
+FROM "prenoms-france"
+GROUP BY  departement
+ORDER BY total desc
+LIMIT 10
+```
+
+**6) Nombre de naissance par sexe**
+
+```sql
+SELECT "@timestamp", sum(nombre), CASE WHEN sexe = 1 THEN 'masculin' ELSE 'feminin' END as sexe
+FROM "prenoms-france"
+GROUP BY "@timestamp", sexe
+```
+
+**7) Diversité des prénoms par sexe**
+
+```sql
+SELECT "@timestamp", count(*) as total, CASE WHEN sexe = 1 THEN 'garcon' ELSE 'fille' END as sexe
+FROM "prenoms-france"
+GROUP BY "@timestamp", sexe
+```
+
+### 2.3 Exemple de Canvas
+
+Ci-dessous un exemple de Canvas, que vous pouvez réaliser pour présenter ces données. (PS. je ne suis vraiment pas doué en graphismes). **Essayer de faire quelque chose de mieux**, en explorant toutes les fonctionnalitées de Canvas!
+
+![canvas picture](images/canvas_image.png)
+
+> Vous n'êtes pas obligé d'utiliser les mêmes types de visualisations, utiliser ce que vous pensez être le plus pertinent
