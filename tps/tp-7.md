@@ -190,3 +190,5 @@ Ci-dessous un exemple de Canvas, que vous pouvez réaliser pour présenter ces d
 ![canvas picture](images/canvas_image.png)
 
 > Vous n'êtes pas obligé d'utiliser les mêmes types de visualisations, utiliser ce que vous pensez être le plus pertinent
+
+**Question**: Que pouvez-vous dire à propos de ces données sur les prénoms & naissances ? Quels sont les tendances, différences, etc ?
