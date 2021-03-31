@@ -66,11 +66,11 @@ Ensuite, sélectionner l'**Elasticsearch SQL**
 
 ![canvas default datasource](images/pannel_canvas_source.png)
 
-Dans cette partie, c'est là que nous allons **définir la requête SQL**. Pour la tester à tout moment, nous pouvons cliquer sur **Preview data**, dont un exemple de résultat est afficher ci-dessous, et si le résultat semble correct, nous allons pouvoir sauvegarder
+Dans cette partie, c'est là que nous allons **définir la requête SQL**. Dans cet exemple, nous allons utiliser la **requête 6**, appelé **"Nombre de naissance par sexe"**, présent dans la suite du TP. Pour la tester à tout moment, nous pouvons cliquer sur **Preview data**, dont un exemple de résultat est afficher ci-dessous, et si le résultat semble correct, nous allons pouvoir sauvegarder
 
 ![canvas default datasource](images/pannel_canvas_query.png)
 
-Lorsque nous affichons la **preview**, le résultat (les données utilisables dans notre visualisation) sera affiché dans une table! Comme pour du SQL classique, plus nous récupérons de données, plus la query sera longue, il faut donc faire des requêtes optimisées au possible, afin de récupérer le moins de données que possible!
+Lorsque nous affichons la **preview**, le résultat (les données utilisables dans notre visualisation) sera affiché dans une table! Comme pour du SQL classique, plus nous récupérons de données, plus l'execution de la requête sera longue, il faut donc faire des requêtes optimisées au possible, afin de récupérer le moins de données que possible!
 
 ![canvas default datasource](images/pannel_canvas_ds_preview.png)
 
@@ -78,11 +78,28 @@ Une fois sauvegardé, dans la partie **Display**, nous avons accès aux options 
 
 > La principale différence est que le **split** de Lens est ici appelé **Color**
 
+Dans cet exemple:
+    - l'**axe X** représente le **temps**
+    - l'**axe Y** représente la moyenne (de la somme) des prénoms données = **total des naissances**
+    - la **couleur** représente le **sexe** : féminin ou masculin
+
 ![canvas default datasource](images/canvas_display_options.png)
 
-La **documentation** de **Canvas** est présente à la page [suivante](https://www.elastic.co/guide/en/kibana/current/canvas.html)
+Ce qui vas nous donner le résultat suivant, sur la feuille de travail:
 
-### 2.1 Créations d'une dashboard sur les prénoms en France
+![canvas default datasource](images/pannel_canvas_simple_result.png)
+
+Il existe d'autres types de visualisations, mais de manière général la **documentation** de **Canvas** est présente à la page [suivante](https://www.elastic.co/guide/en/kibana/current/canvas.html)
+
+### 2.1 Remarques
+
+Dans Canvas, à l'heure actuel, des **regressions** ont été commises, et il y a plusieurs **bugs**, potentiellement très **problématiques**:
+
+- Par défaut, les Canvas sont **sauvegardé automatiquement**
+- Si **plusieurs personnes édite un même Canvas** en même temps, certains éléments risquent de ne **pas être sauvegardés**
+- Quelquefois, même s'il n'y a pas d'erreurs sur une visualisation, **rien de s'affiche**. Dans ce cas là, il suffit (généralement) de **quitter la page Canvas, et revenir dessus**
+
+### 2.2 Créations d'une dashboard sur les prénoms en France
 
 En nous servans du jeu de donnée du TP précédant (avec l'index pattern `prenoms-france`), nous allons créer un canvas représentant au minimum les éléments suivants:
 
@@ -100,7 +117,7 @@ En termes de visualisations:
 
 > Toutes les **requêtes SQL** sont faites et présentes dans la partie suivante!
 
-### 2.2 Requêtes SQL à utiliser
+### 2.3 Requêtes SQL à utiliser
 
 **1) Total de naissances de garçons**
 
