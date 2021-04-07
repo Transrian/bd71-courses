@@ -83,7 +83,7 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 6) le total des ventes, au cours du temps, par type de biens
 7) Une carte, avec pour métrique le total des ventes, pour les zones couvertes en Australie
 8) Une représentation du prix moyen des ventes, par ville & par quartier (sur la même visualisation)
-9) L'évolution de la moyenne des ventes, par ville
+9) L'évolution de la moyenne du prix ventes, par ville
 10) La répartition des ventes par nombre de pièces
 11) L'évolution du prix de vente, en fonction du nombre de pièces, au cours du temps
 12) Une saved search, permettant de visualiser les données, avec pour colonnes:
@@ -121,7 +121,7 @@ Réalisez trois jobs de **machines learning** (interval de temps recommandé):
 Sur toute la période des données:
 
   - *(1pt)* Pour la ville de Sydney, pour quel nombre de pièces les variations de prix ont été les plus importantes ? Jusqu'à combien aurions-nous pu gagner en investissant au bon moment dans ce type de bien (arrondi à 100k)
-  - *(1pt)* Pour les **villes autres que Sydney**, quel **type de bien est le plus vendu** ? Quel est le total des ventes effectuées pour ce type de bien ? (Arrondi au milliard)
+  - *(1pt)* Pour les **villes autres que Sydney**, quel **type de bien est le plus vendu** ? Quel est le total du prix des ventes effectuées pour ce type de bien ? (Arrondi au milliard)
 
 
 **Machine learning** *(/3)*:
