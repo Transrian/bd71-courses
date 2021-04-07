@@ -86,7 +86,7 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 9) L'évolution de la moyenne du prix ventes, par ville
 10) La répartition des ventes par nombre de pièces
 11) L'évolution du prix de vente, en fonction du nombre de pièces, au cours du temps
-12) Une saved search, permettant de visualiser les données, avec pour colonnes:
+12) (Pas obligatoire, il semblerait qu'il y ai un problèmes pour certains groupes) Une Saved Search (sauvegarde du Discover), permettant de visualiser les données, avec pour colonnes:
     - Date
     - Nom de la ville
     - Type
