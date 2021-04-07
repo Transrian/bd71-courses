@@ -100,7 +100,7 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 
 Réalisez trois jobs de **machines learning** (interval de temps recommandé):
 
-1) *(1pt)* Un **single** metric, concernant le **nombre** de transactions
+1) *(1pt)* Un **single** metric, concernant le **nombre** d'évènements
 2) *(1pt)* Un **single** metric, concernant le **prix moyen**
 3) *(1pt)* Un **multi** métrique, concernant le **prix moyen**, avec:
   - split par ville
@@ -121,7 +121,7 @@ Réalisez trois jobs de **machines learning** (interval de temps recommandé):
 Sur toute la période des données:
 
   - *(1pt)* Pour la ville de Sydney, pour quel nombre de pièces les variations de prix ont été les plus importantes ? Jusqu'à combien aurions-nous pu gagner en investissant au bon moment dans ce type de bien (arrondi à 100k)
-  - *(1pt)* Pour les **villes autres que Sydney**, quel **type de bien est le plus vendu** ? Quel est le total des transactions effectuées pour ce type de bien ? (Arrondi au milliard)
+  - *(1pt)* Pour les **villes autres que Sydney**, quel **type de bien est le plus vendu** ? Quel est le total des ventes effectuées pour ce type de bien ? (Arrondi au milliard)
 
 
 **Machine learning** *(/3)*:
