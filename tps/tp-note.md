@@ -75,9 +75,9 @@ De la même manière, dans le **Discover**, si vous regardez sur trois ans, vous
 
 Réaliser une **dashboard Kibana**, permettant de visualiser:
 
-1) le suivi des transactions (=ventes), au cours du temps
-2) le total des transactions effectuées
-3) la moyenne des transactions effectuées
+1) l'évolution du nombre d'évènement au cours du temps
+2) le total des prix, pour tous les biens vendu
+3) le prix moyens des biens vendus
 4) la répartition des types de biens vendus
 5) le suivi des ventes, au cours du temps, par type de biens
 6) le total des ventes, au cours du temps, par type de biens
@@ -132,4 +132,4 @@ Sur toute la période des données:
     - a-t-il existé dans le passé une période plus propice aux investissements ?
   - *(1pt)* D'après le résultat du **job 3**, il semblerait qu'il y a eu beaucoup d'anomalies à Melbourne, aux alentours de Décembre 2019. Quels sont les facteurs communs entre les anomalies les plus prononcées ?
 
-  **Question libre** *(/2)*: Qu'auriez-vous fait, dans cette situation, si vous aviez cette dashboard, et les jobs de machine learning configurés durant la période des données ? Auriez-vous investi, ou pas, et pourquoi ?
+**Question libre** *(/2)*: Qu'auriez-vous fait, dans cette situation, si vous aviez cette dashboard, et les jobs de machine learning configurés durant la période des données ? Auriez-vous investi, ou pas, et pourquoi ?
