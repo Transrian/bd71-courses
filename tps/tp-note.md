@@ -134,3 +134,5 @@ Sur toute la période des données:
 
 **Question libre** *(/2)*: Qu'auriez-vous fait, si vous étiez investisseur dans l'immobilier, et vous aviez cette dashboard, et les jobs de machine learning configurés durant la période des données ? 
 Si les données arrivaient en temps réels, auriez-vous investi, ou pas, et pourquoi ?
+
+(= A un instant T, vous aviez accès à l'historique des ventes avant, mais pas après)
