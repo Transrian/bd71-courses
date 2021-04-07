@@ -114,7 +114,7 @@ Réalisez trois jobs de **machines learning** (interval de temps recommandé):
 
 > A rendre sous format PDF, par mail
 
-**Argumentez les réponses si nécessaire**
+**Argumentez les réponses si nécessaire**, avec des captures d'écran et / ou une description de ce que vous avez fait pour obtenir le résultat
 
 **Dashboard** *(/2)*:
 
