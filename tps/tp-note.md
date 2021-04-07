@@ -126,7 +126,7 @@ Sur toute la période des données:
 
 **Machine learning** *(/3)*:
 
-  - *(1pt)* En corrélant visuellement avec le résultat du **job 1** et **job 2**, la baisse des prix fin décembre 2019 / début décembre 2019 vous semble-t-elle logique ? Pourquoi ?
+  - *(1pt)* En corrélant visuellement avec le résultat du **job 1** et **job 2**, la baisse des prix fin décembre 2019 / début janvier 2020 vous semble-t-elle logique ? Pourquoi ?
   - *(1pt)* D'après le résultat du **job 2**, si nous étions le 14 juin 2020:
     - serions-nous dans une bonne période pour investir, et acheter un logement ?
     - a-t-il existé dans le passé une période plus propice aux investissements ?
