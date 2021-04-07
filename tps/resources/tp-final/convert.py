@@ -5,9 +5,14 @@
 import csv
 import random
 import json
+import math
+import zipfile
 
-groups = ["groupe1", "groupe2", "groupe3", "groupe4"]
-uniqness = 2
+target_dir = "students"
+
+groups = ["prof", "groupe1", "groupe2", "groupe3", "groupe4", "groupe5", "groupe6", "groupe7", "groupe8", "groupe9", "groupe10", "groupe11", "groupe12"]
+ratio_data = 0.7
+uniqness = math.ceil(len(groups)*ratio_data)
 
 with open('master.json', 'w', newline='') as output:
     with open("raw.csv", newline='') as inputcsv:
@@ -31,7 +36,8 @@ with open('master.json', 'w', newline='') as output:
             data.pop("lga_pid", None)
             data.pop("state", None)
 
-            data["groupes"] = random.sample(groups, k=uniqness)
+            event_groups = random.sample(groups, k=uniqness)
+            data["groupes"] = event_groups
 
             if len(new_header) == 0:
                 new_header = list(data.keys())
@@ -40,3 +46,10 @@ with open('master.json', 'w', newline='') as output:
 
             if data["bedrooms"] != "0":
                 output.write(json.dumps(data) + "\n")
+
+            data.pop("groupes", None)
+
+            for group in event_groups:
+                with open(target_dir + "/" + group + ".json", 'a+') as f:
+                    if data["bedrooms"] != "0":
+                        f.write(json.dumps(data) + "\n")

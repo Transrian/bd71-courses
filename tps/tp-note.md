@@ -1,14 +1,20 @@
 # Exploitation de données immobilières (~3h)
 
 **Modalités**:
-  - TP à effectuer en groupe
-  - Utiliser le Kibana dans le cloud: https://bd71.transrian.fr:5601/
+  - TP à effectuer en groupe, note commune aux personnes du groupe
+  - Utiliser le Kibana dans le cloud: https://bd71.transrian.fr:5601
+  - Lisez le tp de bout en bout au début, et n'hésiter pas si vous avez des questions concernant la compréhension du TP
+  - 6 jours pour le faire, jusqu'au 13 avril à minuit, 5 points retirés par jour de retard.
+  - pour le rendu, m'envoyer un mail à valentin.bourdier@utbm.fr, avec les informations suivante:
+    - le groupe & les personnes le composant
+    - un lien vers la dashboard
+    - les réponse aux questions sous format pdf
 
 ## 1.1 Contexte
 
 Vous travaillez pour un [fonds d'investissemement immobilier](https://www.scpi-8.com/opci/definition-fpi) **Australien**, et vous cherchez à savoir s'il est **rentable d'investir dans l'immobilier** des 5 plus grandes villes Australiennes (Sydney, Perth, Adelaide, Brisbane & Canberra).
 
-On considerrera ici qu'il est intéressant de faire des achats si le **prix de vente ne fait qu'augmenter**. Les **critères** à prendre en compte seront principalement le **nombre de pièces**, le **type de bien**, et **le quartier**.
+On considerrera ici qu'il est intéressant de faire des achats si le **prix de vente augmente par rapport au prix d'achat**. Les **critères** à prendre en compte seront principalement le **nombre de pièces**, le **type de bien**, et **le quartier**.
 
 Pour ce faire, chaque groupe aura un **jeu de données légèrement différent**, avec les **ventes immobilières** entre mi-2018 à mi-2020.
 
@@ -104,9 +110,11 @@ Réalisez trois jobs de **machines learning**:
     - quartier
     - type de propriétés
 
-### 2.4 Questions (/7)
+### 2.3 Questions (/7)
 
-> Argumentez les réponses si nécessaire
+> A rendre sous format PDF, par mail
+
+**Argumentez les réponses si nécessaire**
 
 **Dashboard** *(/2)*:
 
