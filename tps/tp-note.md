@@ -98,7 +98,7 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 
 ### 2.2 Machine learning (/3)
 
-Réalisez trois jobs de **machines learning** (interval de temps recommandé):
+Réalisez trois jobs de **machines learning** (utiliser l'interval de temps recommandé par le "Estimate time bucket"):
 
 1) *(1pt)* Un **single** metric, concernant le **nombre** d'évènements
 2) *(1pt)* Un **single** metric, concernant le **prix moyen**
