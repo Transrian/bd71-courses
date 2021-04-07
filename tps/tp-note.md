@@ -98,7 +98,7 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 
 ### 2.2 Machine learning (/3)
 
-Réalisez trois jobs de **machines learning**:
+Réalisez trois jobs de **machines learning** (interval de temps recommandé):
 
 1) *(1pt)* Un **single** metric, concernant le **nombre** de transactions
 2) *(1pt)* Un **single** metric, concernant le **prix moyen**
