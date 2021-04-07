@@ -81,9 +81,9 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 4) la répartition des types de biens vendus
 5) le suivi des ventes, au cours du temps, par type de biens
 6) le total des ventes, au cours du temps, par type de biens
-7) Une carte, avec pour métrique le total des transactions, pour les zones couvertes en Australie
-8) Une représentation du prix moyen des transactions, par ville & par quartier (sur la même visualisation)
-9) L'évolution de la moyenne des transactions, par ville
+7) Une carte, avec pour métrique le total des ventes, pour les zones couvertes en Australie
+8) Une représentation du prix moyen des ventes, par ville & par quartier (sur la même visualisation)
+9) L'évolution de la moyenne des ventes, par ville
 10) La répartition des ventes par nombre de pièces
 11) L'évolution du prix de vente, en fonction du nombre de pièces, au cours du temps
 12) Une saved search, permettant de visualiser les données, avec pour colonnes:
