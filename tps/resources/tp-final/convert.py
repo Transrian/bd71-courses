@@ -10,7 +10,6 @@ groups = ["groupe1", "groupe2", "groupe3", "groupe4"]
 uniqness = 2
 
 with open('master.json', 'w', newline='') as output:
-    #csvwriter = csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     with open("raw.csv", newline='') as inputcsv:
         reader = csv.reader(inputcsv, delimiter=',', quotechar='"')
         headers = next(reader, None)
@@ -23,20 +22,21 @@ with open('master.json', 'w', newline='') as output:
             if data["price"] == "NULL":
                 data["price"] = None
             
-            data["location"] = data["lat"] + "," + data["lon"]
+            if not data["lat"] in [None, "NULL"] and not data["lon"] in [None, "NULL"]:
+                data["location"] = data["lat"] + "," + data["lon"]
+
             data.pop("lat", None)
             data.pop("lon", None)
             data.pop("loc_pid", None)
             data.pop("lga_pid", None)
+            data.pop("state", None)
 
             data["groupes"] = random.sample(groups, k=uniqness)
 
             if len(new_header) == 0:
                 new_header = list(data.keys())
-                #csvwriter.writerow(new_header)
 
-            #print(data)
             rows_values = list(data.values())
-            #csvwriter.writerow(rows_values)
 
-            output.write(json.dumps(data) + "\n")
+            if data["bedrooms"] != "0":
+                output.write(json.dumps(data) + "\n")
