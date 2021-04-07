@@ -132,4 +132,5 @@ Sur toute la période des données:
     - a-t-il existé dans le passé une période plus propice aux investissements ?
   - *(1pt)* D'après le résultat du **job 3**, il semblerait qu'il y a eu beaucoup d'anomalies à Melbourne, aux alentours de Décembre 2019. Quels sont les facteurs communs entre les anomalies les plus prononcées ?
 
-**Question libre** *(/2)*: Qu'auriez-vous fait, dans cette situation, si vous aviez cette dashboard, et les jobs de machine learning configurés durant la période des données ? Auriez-vous investi, ou pas, et pourquoi ?
+**Question libre** *(/2)*: Qu'auriez-vous fait, si vous étiez investisseur dans l'immobilier, et vous aviez cette dashboard, et les jobs de machine learning configurés durant la période des données ? 
+Si les données arrivaient en temps réels, auriez-vous investi, ou pas, et pourquoi ?
