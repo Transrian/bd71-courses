@@ -1,4 +1,4 @@
-# Exploitation de données immobilières (~3h)
+# Exploitation de données immobilières (~4h)
 
 **Modalités**:
   - TP à effectuer en groupe, note commune aux personnes du groupe
@@ -85,7 +85,7 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 8) Une représentation du prix moyen des transactions, par ville & par quartier (sur la même visualisation)
 9) L'évolution de la moyenne des transactions, par ville
 10) La répartition des ventes par nombre de pièces
-11) L'évolution du prix de vente, en fonction du nombre de pièces
+11) L'évolution du prix de vente, en fonction du nombre de pièces, au cours du temps
 12) Une saved search, permettant de visualiser les données, avec pour colonnes:
     - Date
     - Nom de la ville
