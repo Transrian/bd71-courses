@@ -63,9 +63,9 @@ De la même manière, dans le **Discover**, si vous regardez sur trois ans, vous
 
 ## 2. TP
 
-### 2.1 Dashboard (/12)
+### 2.1 Dashboard (/10)
 
-(1 point pour chaque)
+(0.6 point pour chaque, 2 point pour l'aspect esthétique & pratique pour l'utilisation de la dashboard)
 
 Réaliser une **dashboard Kibana**, permettant de visualiser:
 
@@ -90,13 +90,13 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 
 > La carte à réaliser n'est pas du même type que nous avons utiliser jusqu'à présent, vous pouvez utiliser `Heat Map`
 
-### 2.2 Machine learning (/4)
+### 2.2 Machine learning (/3)
 
 Réalisez trois jobs de **machines learning**:
 
-1) Un **single** metric, concernant le **nombre** de transaction
-2) Un **single** metric, concernant le **prix moyen**
-3) Un **multi** métrique, concernant le **prix moyen**, avec:
+1) *(1pt)* Un **single** metric, concernant le **nombre** de transaction
+2) *(1pt)* Un **single** metric, concernant le **prix moyen**
+3) *(1pt)* Un **multi** métrique, concernant le **prix moyen**, avec:
   - split par ville
   - avec pour influenceurs
     - ville
@@ -104,16 +104,24 @@ Réalisez trois jobs de **machines learning**:
     - quartier
     - type de propriétés
 
-### 2.4 Questions
+### 2.4 Questions (/7)
 
-TOFINNISH
+> Argumentez les réponses si nécessaire
 
-Machine learning:
+**Dashboard** *(/2)*:
 
-  - En correlant visualement avec le résultat du **job 1** et **job 2**, la baisse des prix fin décembre 2019 / début décembre 2019 vous semble-elle logique ? Pourquoi ?
+Sur toute la période des données:
 
-  - D'après le résultat du **job 2**, si nous étions le 14 juin 2020:
+  - *(1pt)* Pour la ville de Sydney, pour quelle nombre de pièces les variations de prix ont été les plus importantes ? Jusqu'à combien aurions nous pu gagner en investissant au bon moment dans ce type de bien (arrondi à 100k)
+  - *(1pt)* Pour les **villes autres que Sydney**, quel **type de bien est le plus vendu** ? Quel est le total des transaction effectués pour ce type de bien ? (Arrondi au milliard)
+
+
+**Machine learning** *(/3)*:
+
+  - *(1pt)* En correlant visualement avec le résultat du **job 1** et **job 2**, la baisse des prix fin décembre 2019 / début décembre 2019 vous semble-elle logique ? Pourquoi ?
+  - *(1pt)* D'après le résultat du **job 2**, si nous étions le 14 juin 2020:
     - serions nous dans une bonne période pour investir, et acheter un logement ?
     - a t'il existé dans le passé un période plus propice aux investissements ?
+  - *(1pt)* D'après le résultat du **job 3**, il semblerait qu'il y a eu beaucoup d'anomalies à Melbourne, au alentours de Décembre 2019. Quels sont les facteurs communs entre les anomalies les plus prononcées ?
 
-  - D'après le résultat du **job 3**, il semblerait qu'il y a eu beaucoup d'anomalies à Melbourne, au alentours de Décembre 2019. Quels sont les facteurs communs entre les anomalies les plus prononcées ?
+  **Question libre** *(/2)*: Qu'auriez vous fait, dans cette situation, si vous aviez cette dashboard, et les jobs de machine learning configurés durant la période des données ? Auriez vous investi, ou pas, et pourquoi ?
