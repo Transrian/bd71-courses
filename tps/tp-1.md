@@ -25,7 +25,7 @@ Ouvrez un shell et tapez les commandes suivantes:
 
 ```bash
 # Télécharger l'archive contenant logstash
-wget https://artifacts.elastic.co/downloads/logstash/logstash-7.11.0-linux-x86_64.tar.gz -O logstash.tar.gz
+wget https://artifacts.elastic.co/downloads/logstash/logstash-8.0.0-linux-x86_64.tar.gz -O logstash.tar.gz
 
 # Décompresser l'archive
 tar -zxvf logstash.tar.gz
@@ -34,7 +34,7 @@ tar -zxvf logstash.tar.gz
 rm logstash.tar.gz
 
 # Entez dans le répertoire de logstash
-cd logstash-7.11.0
+cd logstash-8.0.0
 ```
 
 Maintenant que Logstash est téléchargé, effectuons un test sommaire pour voir si il est correctement configuré:
@@ -47,8 +47,8 @@ JAVA_HOME='' ./bin/logstash --version
 Vous devez obtenir un message comme celui-ci (le chemin du jdk utilisé est important):
 
 ```
-Using bundled JDK: /my/path/to/logstash/directory/logstash-7.11.0/jdk
-logstash 7.11.0
+Using bundled JDK: /my/path/to/logstash/directory/logstash-8.0.0/jdk
+logstash 8.0.0
 ```
 
 Si ce n'est pas le cas, il y a probablement un problème.
@@ -59,7 +59,7 @@ Lancez la commande suivante:
 
 ```bash
 # Entrez dans le répertoire de logstash
-cd logstash-7.11.0
+cd logstash-8.0.0
 
 # Lancement de logstash avec une configuration en ligne de commande
 JAVA_HOME='' ./bin/logstash --log.level=error -e "input { stdin { type => stdin } } output { stdout { codec => rubydebug } }"
@@ -75,10 +75,15 @@ Taper une chaine de caractère, suivis de la touche entrée : cette première de
 The stdin plugin is now waiting for input:
 Ceci est un simple test
 {
-          "host" => "X970670",
-      "@version" => "1",
        "message" => "Ceci est un simple test",
-    "@timestamp" => 2021-02-16T18:43:22.222Z,
+    "@timestamp" => 2022-02-20T13:40:32.529389Z,
+         "event" => {
+        "original" => "Ceci est un simple test"
+    },
+          "host" => {
+        "hostname" => "x970670"
+    },
+      "@version" => "1",
           "type" => "stdin"
 }
 ```
@@ -97,6 +102,9 @@ path.data: "./data2"
 
 # Si les évènements en sortie doivent-être ordonné ou non
 pipeline.ordered: true
+
+# Desactivation de la compatibilité ECS
+pipeline.ecs_compatibility: disabled
 
 # Log level
 log.level: info
@@ -142,7 +150,18 @@ Enfin, lançons Logstash, en prenant en compte ces fichiers de configuration:
 JAVA_HOME='' ./bin/logstash -f conf/my-first-test/*.conf
 ```
 
-Si tout fonctionne bien, vous devriez avoir le même résultat qu'au premier test que nous avons effectuer (avec plus de logs)!
+Si tout fonctionne bien, vous devriez avoir le même résultat qu'au premier test que nous avons effectuer (avec plus de logs), et un format de sortie légèrement différent:
+
+```
+Ceci est un simple test
+{
+    "@timestamp" => 2022-02-20T13:46:55.165996Z,
+       "message" => "Ceci est un simple test",
+          "type" => "stdin",
+      "@version" => "1",
+          "host" => "x970670"
+}
+```
 
 ### 1.2 Fonctionnement de Logstash
 
@@ -151,7 +170,7 @@ Si tout fonctionne bien, vous devriez avoir le même résultat qu'au premier tes
 Même s'il y a beaucoup plus de dossiers que ça, voici les fichiers et dossiers qui vont nous intéresser:
 
 ```
-logstash-7.11.0
+logstash-8.0.0
 ├── bin
 ├── conf
 │   └── my-first-test
@@ -327,7 +346,7 @@ output {
 
 **Résultats**
 
-Une fois ces parties faites (vous pourrez réutiliser l'input & l'output pour les exercices prochains, en modifiant les chemins), nous allons pouvoir voir le résultat:
+Une fois ces parties faites (vous pourrez réutiliser l'input & l'output pour les exercices prochains, en **modifiant les chemins**), nous allons pouvoir voir le résultat:
 
 Créons le fichier `conf/auth/logstash.conf` avec pour contenu la concaténation de ces trois parties:
 
@@ -364,7 +383,7 @@ filter {
 output {
     file {
         path => "<chemin complet>/output/auth-transforme.log"
-        codec => rubydebug 
+        codec => json_lines 
     }
 }
 ```
@@ -393,7 +412,7 @@ Partons de l'exercice précédent : quelqu'un a créé un nouveau format de logs
 Vous pouvez partir du **filtre précédent**, qui ne **demande pas de modification**. Néanmoins, il faudra faire une modification ailleurs ..
 Si vous le testez sans modification, certains messages auront un **tags** `_grokparsefailure`, signifiant qu'il y a eu un problème lors du **grok**.
 
-> Aide: Le mot clé est dans le titre
+> Aide: Le mot clé est dans le titre.. **mulilines**, a chercher dans la documentation
 
 **Solution**: [ici](resources/tp-1/answer/2.md)
 
