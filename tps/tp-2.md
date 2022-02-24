@@ -84,8 +84,8 @@ Chaque groupe a donc un utilisateur créer, avec pour username / password le cou
 > Pour le Groupe 3, user/mdp sera groupe3/groupe3
 
 Des exemples d'URL (présent sur chaque noeud), cf. page d'architecture globale:
-- **Elasticsearch**: https://serv-bd71-1:9200
-- **Kibana**: https://serv-bd71-1:5601
+- **Elasticsearch**: https://elasticsearch.bd51.transrian.fr
+- **Kibana**: https://kibana.bd51.transrian.fr
 
 Comme vous ne serez pas admin sur le cluster Elasticsearch, vos droits sont restreints:
 - nous ne **verrez pas toutes les données** (seulement les vôtres, ainsi que quelques-unes génériques)

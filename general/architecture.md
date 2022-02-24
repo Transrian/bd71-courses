@@ -40,14 +40,10 @@ Ci dessous un schéma simplifié de l'architecture (certaines flèches sont manq
 
 ## URLs
 
-Pour les URLs, vous pouvez **utilisez m'importe laquelle** de celles-ci : chaque Nginx est configuré en tant que **load balancer**, et est capable de communiquer avec toutes les instances (toutes les instances Kibana & toutes les instances Elasticsearch)
+Pour les URLs, vous pouvez **utilisez les urls dessous**, il s'agit des instances, derrière le load-balancer Nginx.
 
 **Kibana**:
-- https://serv-bd71-1:5601
-- https://serv-bd71-2:5601
-- https://serv-bd71-3:5601
+- https://kibana.bd51.transrian.fr
 
 **Elasticsearch**:
-- https://serv-bd71-1:9200
-- https://serv-bd71-2:9200
-- https://serv-bd71-3:9200
+- https://elasticsearch.bd51.transrian.fr

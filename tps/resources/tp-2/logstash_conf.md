@@ -4,21 +4,7 @@
 input {
     
     redis {
-        host => "serv-bd71-1"
-        key => "logs-access-<groupeX>"
-        data_type => "list"
-        password => "NvtEH3qOsZvEI16sx8LlRLhW76wjGQi8D13CenL8k8sQIFoYdFX4dmoTP3P1XNJl9E8cfTchgfwNfc"
-    }
-    
-    redis {
-        host => "serv-bd71-2"
-        key => "logs-access-<groupeX>"
-        data_type => "list"
-        password => "NvtEH3qOsZvEI16sx8LlRLhW76wjGQi8D13CenL8k8sQIFoYdFX4dmoTP3P1XNJl9E8cfTchgfwNfc"
-    }
-    
-    redis {
-        host => "serv-bd71-3"
+        host => "bd51.transrian.fr"
         key => "logs-access-<groupeX>"
         data_type => "list"
         password => "NvtEH3qOsZvEI16sx8LlRLhW76wjGQi8D13CenL8k8sQIFoYdFX4dmoTP3P1XNJl9E8cfTchgfwNfc"

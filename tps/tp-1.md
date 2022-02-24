@@ -147,7 +147,7 @@ output {
 Enfin, lançons Logstash, en prenant en compte ces fichiers de configuration:
 
 ```bash
-JAVA_HOME='' ./bin/logstash -f conf/my-first-test/*.conf
+JAVA_HOME='' ./bin/logstash -f conf/my-first-test
 ```
 
 Si tout fonctionne bien, vous devriez avoir le même résultat qu'au premier test que nous avons effectuer (avec plus de logs), et un format de sortie légèrement différent:
@@ -232,7 +232,7 @@ Pour chaque nouvel exercice, il va vous être demandé, pour créer une nouvelle
 
 - De créer le / les fichiers de données initiaux, à faire dans le dossier `input` (si nécessaire)
 - De créer un nouveau dossier, qui correspondra au nom de votre pipeline, dans `conf` (et de mettre les fichiers de configuration Logstash dedans)
-- De modifier la ligne de commande, utilisée lors du dernier test, pour pointer vers le bon dossier (`JAVA_HOME='' ./bin/logstash -f conf/<mon-dossier-pipeline>/*.conf`)
+- De modifier la ligne de commande, utilisée lors du dernier test, pour pointer vers le bon dossier (`JAVA_HOME='' ./bin/logstash -f conf/<mon-dossier-pipeline>`)
 
 ### 2. Exercices
 
@@ -383,7 +383,7 @@ filter {
 output {
     file {
         path => "<chemin complet>/output/auth-transforme.log"
-        codec => json_lines 
+        codec => rubydebug 
     }
 }
 ```
@@ -391,7 +391,7 @@ output {
 Et lançons Logstash:
 
 ```bash
-JAVA_HOME='' ./bin/logstash -f conf/auth/*.conf
+JAVA_HOME='' ./bin/logstash -f conf/auth
 ```
 
 Le résultat du fichier de destination, `output/auth-transforme.log`, devrait-être tel que [celui-ci](resources/tp-1/output_auth.md)
@@ -412,7 +412,7 @@ Partons de l'exercice précédent : quelqu'un a créé un nouveau format de logs
 Vous pouvez partir du **filtre précédent**, qui ne **demande pas de modification**. Néanmoins, il faudra faire une modification ailleurs ..
 Si vous le testez sans modification, certains messages auront un **tags** `_grokparsefailure`, signifiant qu'il y a eu un problème lors du **grok**.
 
-> Aide: Le mot clé est dans le titre.. **mulilines**, a chercher dans la documentation
+> Aide: Le mot clé est dans le titre.. **mulilines**, à chercher dans la documentation
 
 **Solution**: [ici](resources/tp-1/answer/2.md)
 
