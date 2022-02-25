@@ -9,7 +9,6 @@ Dans chaque serveur, les logiciels suivants sont installés:
 - [Elasticsearch](https://www.elastic.co/fr/elasticsearch/): base de données NoSQL, avec moteur de recherche distribué
 - [Kibana](https://www.elastic.co/fr/kibana/): interface web pour la visualisation des données Elasticsearch
 - [Nginx](https://www.nginx.com/): Serveur web haute performance
-- [Redis](https://redis.io/): base de données stockant les données en mémoire
 
 **Pour les outils de monitoring**:
 
@@ -21,7 +20,7 @@ Les **flux de communications** sont comme indiqué sur le schéma ci-dessous:
 
 ![Architecture des composants d'un serveur](images/internal_server_architecture.png)
 
-Seuls Elasticsearch, Nginx & Redis sont accessibles depuis l'extérieur du serveur.
+Seuls Elasticsearch et Nginx sont accessibles depuis l'extérieur du serveur.
 
 ## Architecture globale et interconnexion des composants
 
@@ -32,7 +31,6 @@ En plus de l'échelle individuelle, nous devons considérer l'architecture globa
 - Les 3 **instances Kibana** sont toutes configurées pour communiquer avec **chacun des noeuds** elasticsearch
     - Tant qu'une instance est fonctionnelle, nous pourrons visualiser les données
 - Les 3 **instances Nginx** sont configurées en tant que de [proxy inverse](https://frwikipedia.org/wiki/Proxy_inverse) et [répartiteur de charge](https://fr.wikipedia.org/wiki/R%C3%A9partition_de_charge) pour les instances Kibana et Elasticsearch. Cela signifie que si une des instances Kibana, une autre prendra le relais, et cela transparents pour l'utilisateur. Il en est de même pour Elasticsearch.
-- Les 3 **instances Redis**, quant à elles, sont totalement **indépendantes** : elles ne font pas partie de la stack, mais seront utilisé dans certains TPs. Elles ne sont pas redondantes, mais seront toutes utilisé en tant que *stockage temporaire* par des agents de collectes : tant qu'une d'entre elles fonctionne encore, le flux de données pourra continuer.
 
 Ci dessous un schéma simplifié de l'architecture (certaines flèches sont manquantes, pour gagner en clarté):
 
