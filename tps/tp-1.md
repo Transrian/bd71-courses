@@ -326,7 +326,7 @@ filter {
 
 Les 3 filtres utilisés sont les plus courants, et sont utilisés dans la majorité des configurations:
 
-- le [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) va nous permettre de **découper** le message en morceaux (contenu, par défaut, dans le champ `message`). Il s'agit de ce que nous avons fait tout à l'heure.
+- le [grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) va nous permettre de **découper** le message en morceaux (contenu, par défaut, dans le champ `message`). Il s'agit de ce que nous avons fait tout à l'heure. La liste des Grok patterns (cf. documentation du filter) est disponible [ici](https://github.com/logstash-plugins/logstash-patterns-core/blob/main/patterns/legacy/grok-patterns)
 - le [mutate](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) va nous permettre de convertir le **pid** du processus en nombre. En effet, le grok précédent n'interprète pas les données : pour lui, toutes les parties qu'il récupèrera seront considérées comme du texte.
 - le [date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) va permettre de standardiser le format de la date. Ce format de date est particulier, car il existe deux versions différentes, mais ils sont construits à partir de la définition dans la documentation du module. La date résultante (qui va écraser le format initial) sera sous format [ISO8601](https://fr.wikipedia.org/wiki/ISO_8601), un format nativement reconnu par Elasticsearch. Si la timezone est présente (par défaut, la date est considérée en tant qu'UTC), n'oubliez pas de le préciser!
 
