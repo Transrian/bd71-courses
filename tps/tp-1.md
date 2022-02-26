@@ -224,7 +224,7 @@ Vous pouvez trouver, dans la [documentation Logstash](https://www.elastic.co/gui
 
 Dans un environnement complexe, nous pouvons lancer de **multiples pipelines** en parallèle, d'où le fichier de configuration **pipelines.yml**, mais dans notre cas, nous utiliserons uniquement la ligne de commande, pour indiquer l'emplacement des configurations à traiter
 
-Un pipeline peut contenir **plusieurs fichiers de configuration** (d'où le pattern que nous précisons en ligne de commande, `*.conf`). Si utilisons un pattern, les fichiers de configurations seront chargés séquentiellement, **par ordre alphabétique** -> leur ordre est important.
+Un pipeline peut contenir **plusieurs fichiers de configuration**. Si c'est le cas, les fichiers de configurations seront chargés séquentiellement, **par ordre alphabétique** -> leur ordre est important.
 
 #### 1.2.3 Protocole de création d'une nouvelle pipeline
 
