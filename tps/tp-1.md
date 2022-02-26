@@ -174,7 +174,7 @@ logstash-8.0.0
 ├── bin
 ├── conf
 │   └── my-first-test
-│       └── logstash.yml
+│       └── logstash.conf
 ├── config
 │   ├── jvm.options
 │   ├── log4j2.properties
