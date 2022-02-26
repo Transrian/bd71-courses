@@ -25,13 +25,13 @@ Ouvrez un shell et tapez les commandes suivantes:
 
 ```bash
 # Télécharger l'archive contenant logstash
-wget https://artifacts.elastic.co/downloads/logstash/logstash-8.0.0-linux-x86_64.tar.gz -O logstash.tar.gz
+wget https://artifacts.elastic.co/downloads/logstash/logstash-8.0.0-linux-x86_64.tar.gz -O logstash2.tar.gz
 
 # Décompresser l'archive
-tar -zxvf logstash.tar.gz
+tar -zxvf logstash2.tar.gz
 
 # Suppression de l'archive
-rm logstash.tar.gz
+rm logstash2.tar.gz
 
 # Entez dans le répertoire de logstash
 cd logstash-8.0.0
@@ -431,7 +431,8 @@ En vous servant de la [documentation logging apache](https://httpd.apache.org/do
 - le champ date doit-être bien formaté
 - les champs sous format nombre doivent-être convertis en nombre
 
-<!--**Solution**: [ici](resources/tp-1/answer/3.md)-->
+**Solution**: [ici](resources/tp-1/answer/3.md)
+
 #### 2.4 Data venant d'un CSV
 
 Nous pouvons traiter de nombreux types de données avec Logstash, dont des [CSV](https://fr.wikipedia.org/wiki/Comma-separated_values)!
@@ -440,7 +441,7 @@ Nous pouvons traiter de nombreux types de données avec Logstash, dont des [CSV]
 
 Réaliser le filter, et tester
 
-<!--**Solution**: [ici](resources/tp-1/answer/4.md)-->
+**Solution**: [ici](resources/tp-1/answer/4.md)
 
 #### 2.5 JSON logs
 
@@ -450,7 +451,7 @@ Nous avons maintenant des logs web, dans un format [JSON](https://fr.wikipedia.o
 
 Même processus.
 
-<!--**Solution**: [ici](resources/tp-1/answer/5.md)-->
+**Solution**: [ici](resources/tp-1/answer/5.md)
 
 ### 3. Questions ouvertes
 
