@@ -25,13 +25,13 @@ Ouvrez un shell et tapez les commandes suivantes:
 
 ```bash
 # Télécharger l'archive contenant logstash
-wget https://artifacts.elastic.co/downloads/logstash/logstash-8.0.0-linux-x86_64.tar.gz -O logstash2.tar.gz
+wget https://artifacts.elastic.co/downloads/logstash/logstash-8.0.0-linux-x86_64.tar.gz -O logstash.tar.gz
 
 # Décompresser l'archive
-tar -zxvf logstash2.tar.gz
+tar -zxvf logstash.tar.gz
 
 # Suppression de l'archive
-rm logstash2.tar.gz
+rm logstash.tar.gz
 
 # Entez dans le répertoire de logstash
 cd logstash-8.0.0

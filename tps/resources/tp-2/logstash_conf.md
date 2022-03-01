@@ -1,16 +1,25 @@
 # Input
 
+> Pensez à remplacer avec les bonnes valeurs!
+
 ```ruby
 input {
-    
-    redis {
-        host => "bd51.transrian.fr"
-        key => "logs-access-<groupeX>"
-        data_type => "list"
-        password => "NvtEH3qOsZvEI16sx8LlRLhW76wjGQi8D13CenL8k8sQIFoYdFX4dmoTP3P1XNJl9E8cfTchgfwNfc"
+      elasticsearch {
+        hosts => "https://elasticsearch.bd51.transrian.fr:443"
+        query => '{ "query": { "range": { "@timestamp": { "gte": "now-1m/m" } } }, "_source": [ "host", "@timestamp", "message", "path" ] } '
+        user => "<groupeX>"
+        password => "<groupeX>"
+        index => "PROF_ACCESS"
+        schedule => "* * * * *"
+
+        # Seulement nécessaire si:
+        #   - 1. Vous utilisez Guacamole
+        #   - 2. Il y a une erreur mentionnant le fait que Logstash ne reussisse pas
+        #        a communiquer avec Elasticsearch
+        
+        #proxy => "http://proxy.utbm.fr:3128"
+      }
     }
-    
-}
 ```
 
 # Filter

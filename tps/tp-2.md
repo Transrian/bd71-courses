@@ -2,7 +2,7 @@
 
 **Collecte et traitement de logs en temps réel.**
 
-**TLDR**: Avec Logstash, nous allons lire des données depuis Redis, générées en temps réel, les traiter, les envoyer dans Elasticsearch, et faire un dashboard de suivis.
+**TLDR**: Avec Logstash, nous allons lire des données depuis Elasticsearch, générées en temps réel, les traiter, les envoyer dans Elasticsearch, et faire un dashboard de suivis.
 
 ## Architecture
 
@@ -19,8 +19,8 @@ Pour résumer:
 
 ![Architecture à réaliser](images/logstash_to_infra_architecture.png)
 
-- flux violet, **récupération des logs de Nginx** avec un filebeat (déjà fait), et stocker dans un Redis
-- Récupération de ces logs depuis Redis avec un Logstash (à faire), **parsing**, et envoi dans Elasticsearch (en transitant par Nginx, flux orange)
+- flux violet, **récupération des logs de Nginx** avec un filebeat (déjà fait), et stocker dans un Elasticsearch
+- Récupération de ces logs depuis Elasticsearch avec un Logstash (à faire), **parsing**, et envoi dans Elasticsearch (en transitant par Nginx, flux orange)
 - Enfin, le client final, vous, pourra **visualiser les logs** en temps réel, depuis Kibana (flux noir)
 
 ## Notions fondamentales pour Elasticsearch
@@ -107,7 +107,7 @@ Schéma de ce que nous allons réaliser:
 
 Les logs que nous allons récolter et parser sont celles d'un web serveur [Nginx](https://fr.wikipedia.org/wiki/NGINX), donc très similaires au format **Apache logs** que vous avez déjà traité.
 
-**Redis**, qui va nous servir de **buffer**, possède une **queue**, qui contiendra les logs des serveurs Nginx. Cette clé sera formaté ainsi: `logs-access-<groupX>`
+**Elasticsearch**, qui va nous servir de **buffer**, n'est pas conseillé d'être utilisé en tant quel tel. Néanmoins, au vu des contraintes techniques, nous l'utiliseront en temps que tel.
 
 Le but de cet exercice va être d'insérer les données dans **Elasticsearch**, en prenant en compte le **cycle de vie** des données.
 
@@ -118,8 +118,8 @@ L'input & le filtre seront **communs** aux deux cas d'usage.
 Ils sont accessibles sur [cette page](resources/tp-2/logstash_conf.md)
 
 L'**input** est relativement **simple**: 
-  - Pour chaque instance Redis (une par serveur), nous avons un input redis, avec les paramètres associés, afin de lire les valeurs dans la **clé** de stockage.
-  - Le Redis, à travers cette configuration Logstash, est configuré en tant qu'une [queue FIFO](https://fr.wikipedia.org/wiki/File_(structure_de_donn%C3%A9es)) : les premiers évènements rentrés seront les premiers récupérer par Logstash
+  - Pour notre clusteur Elasticsearch, nous avons un input Elasticsearch, qui va lire les données d'un index particulier, l'index `PROF_ACCESS`
+  - Les données seront lu depuis cet index toutes les minute, et en interrogeant les logs sur la dernière minute.
 
 Le **filtre**, quant à lui, est **beaucoup plus complexe**. Même si le format est très similaire aux logs Apache que nous avons vus le TP précédent, il va couvrir certains uses-cases et besoin plus spécifiques:
 
@@ -130,11 +130,11 @@ Le **filtre**, quant à lui, est **beaucoup plus complexe**. Même si le format 
 - Séparer l'[user agent](https://fr.wikipedia.org/wiki/User_agent) client en plusieurs parties
 - Séparer l'[OS](https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27exploitation) client en plusieurs parties
 
-> N'oubliez pas de mettre **votre nom de groupe** dans l'input, dans la **key** Redis!
+> N'oubliez pas de mettre **votre nom de groupe** dans l'input Elasticsearch
 
 ### 1.1 Insertion dans Elasticsearch basique
 
-Dans un premier temps, nous allons juste écrire les données venant de Redis dans un unique index Elasticsearch.
+Dans un premier temps, nous allons juste écrire les données venant de notre buffer dans un unique index Elasticsearch.
 
 Créer une nouvelle **pipeline Logstash**, et ajouter, en plus de l'input & du filter, l'output suivant.
 
@@ -143,10 +143,12 @@ Créer une nouvelle **pipeline Logstash**, et ajouter, en plus de l'input & du f
 Si vous n'avez pas d'erreurs:
 
 - Connectez-vous dans Kibana
-- Dans le menu, aller dans **Stack Management**, puis dans **Data**, la partie **Index Management**
+- Dans le menu, aller dans **Stack Management**, puis dans **Data**, la partie **Data View**
 - **Vérifier** que l'index que vous avez créé **existe** bien, et que **le nombre de documents** n'est pas égal à zéro
 
 Si tout c'est bien passé, après avoir vérifié de la même manière que l'exemple précédent, vous pouvez continuer.
+
+> L'arrivée des logs 
 
 ### 1.2 Index journalier
 
@@ -170,7 +172,7 @@ Avant de pouvoir configurer Logstash pour utiliser ILM, nous devons créer une p
 
 Une fois la policy créer, il est temps de **configurer la sortie Logstash** (vous pouvez vous baser également sur la configuration précédente).
 
-Pour la configuration de l'output Logstash, je vous invite à vous basez (après avoir lu la doc) de cet [exemple](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-ilm), en adaptant le **rollover alias** et la **policy ilm** à votre configuration. Le **rollover alias** va correspondre au préfix de l'index (cf. explications précédentes sur le cycle de vie de la donnée), vous pouvez utiliser `<groupX>-access_ilm`
+Pour la configuration de l'output Logstash, je vous invite à vous basez (après avoir lu la doc) de cet [exemple](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-ilm), en adaptant le **rollover alias** et la **policy ilm** à votre configuration. Le **rollover alias** va correspondre au préfix de l'index (cf. explications précédentes sur le cycle de vie de la donnée), vous pouvez utiliser `<groupeX>-access_ilm`
 
 Après avoir **vérifié** que vous **ayez bien des données**, nous allons faire un brin de **configuration supplémentaire** sur les index, avant de passer à la partie la plus importante, la visualisation des données!
 

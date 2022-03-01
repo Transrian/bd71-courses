@@ -8,7 +8,7 @@ Mais dans un premier temps, il va falloir comprendre le **fonctionnement** de Ki
 
 ### Index pattern
 
-*(Stack Management > Kibana > Index patterns)*
+*(Stack Management > Kibana > Data View)*
 
 Un **index pattern**, dans Kibana, est la **représentation** de la *structure* de nos évènements. Il est associé à un ou plusieurs **index** Elasticsearch ou **alias**, et va synthétiser les différents champs, leurs types, ainsi que l'affichage que nous allons en faire dans Kibana.
 
