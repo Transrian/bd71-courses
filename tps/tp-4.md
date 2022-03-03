@@ -14,7 +14,7 @@ Nous allons utiliser une fonctionnalité de Kibana allant nous permettre d'**ins
 Pour ce faire, aller dans la partie **Machine Learning** (dans Analytics), et utiliser la fonction **Import data**.
 
 Nous allons importer **un fichier à la fois**.
-- Pour les **données de la France**, il faut augmenter (une fois la première analyse faite), le **nombre de lignes a analysé** de 1000 (défaut) à 100000 (sinon, le département est considéré comme un nombre, au lieu d'une chaine de caractère). Vous pouvez appeler l'index résultat. `<groupeX>-covid-france`
+- Pour les **données de la France**, il faut augmenter (une fois la première analyse faite), le **nombre de lignes a analysé** de 1000 (défaut) à 22000 (sinon, le département est considéré comme un nombre, au lieu d'une chaine de caractère). Vous pouvez appeler l'index résultat. `<groupeX>-covid-france`
 - Pour les **données mondiales**, même processus, changer le **nombre de ligne à analyser** de 1000 (défaut) à 10000, puis aller à l'étape suivante, et entrer un nom d'index, comme `<groupeX>-covid`
 
 Si vous regarder vos **index pattern Kibana**, vous pouvez voir qu'ils ont été créés, lors de l'insertion des données, donc vous n'avez rien de plus à faire!
@@ -136,6 +136,11 @@ Pour faire une **carte**, vous pouvez utiliser le **champ**:
 Réaliser deux dashboard, une pour chaque jeu de données:
 
 > Pour créer des cartes, allez dans l'onglet **Maps**, ajouter un **layer**, de type **Choropleth** (et séléctionner la zone adapté, avec les informations sur l'index). Enfin, changer la **métrique**, dans **Term join**, pour représenter la valeur que vous souhaitez.
+
+Pour les données:
+
+- du monde, vous utilisez le champ `code_iso`, qui est un **code ISO 3166 à 3 caractères**
+- de la france, vous utiliserez le champ `dep`, qui est un **code INSEE**
 
 #### 2.2.1 Monde
 

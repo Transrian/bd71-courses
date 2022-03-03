@@ -70,6 +70,7 @@ Pour filtrer sur un seul pays / agrégation de données -> Changer la valeur de 
 }
 ```
 
+> **Nous utiliserons ce filtre plus tard dans le TP**
 
 ### 1.2.1 Filtre pour exclure les agrégations
 
@@ -99,6 +100,8 @@ Supprime toutes les agrégations de données (monde, continent)
   }
 }
 ```
+
+> **Nous utiliserons ce filtre plus tard dans le TP**
 
 ## 2.2 Exercices
 
