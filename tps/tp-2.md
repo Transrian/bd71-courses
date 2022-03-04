@@ -148,7 +148,7 @@ Si vous n'avez pas d'erreurs:
 
 Si tout c'est bien passé, après avoir vérifié de la même manière que l'exemple précédent, vous pouvez continuer.
 
-> L'arrivée des logs 
+> L'**arrivée** des logs peut prendre **une à deux minutes**, du fait de l'architecture non-idéale que nous avons
 
 ### 1.2 Index journalier
 
