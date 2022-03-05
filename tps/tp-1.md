@@ -414,7 +414,7 @@ Si vous le testez sans modification, certains messages auront un **tags** `_grok
 
 > Aide: Le mot clé est dans le titre.. **mulilines**, à chercher dans la documentation
 
-<!--**Solution**: [ici](resources/tp-1/answer/2.md)-->
+**Solution**: [ici](resources/tp-1/answer/2.md)
 
 #### 2.3 Apache access logs
 
