@@ -236,5 +236,5 @@ Le résultat devrait avoir un nombre de **hit** différent de zéro, et vous pou
 Qui seront discutés au début du tp suivant:
 
 - Quel est le plus gros désavantage d'ILM ?
-- Quel est le problème pour la génération d'index journalier / mensuel, pour un stockage courte durée ?
+- Quel pourrait-être le problème pour la génération d'index journalier / mensuel, pour un stockage courte durée ?
 - Quels sont les paramètres à prendre en compte, pour la création d'index (ILM ou journalier / mensuel), pour une application ?

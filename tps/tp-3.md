@@ -192,5 +192,6 @@ Qui sera discuté au début du tp suivant:
   - Sur Kibana ?
   - Sur Elasticsearch ?
   - Sur Nginx ?
-- La repartions des queries par host vous-semble normal ? Comment l'expliquer, si on reprend les schémas d'architecture globale ?
+<!--- La repartions des queries par host vous-semble normal ? Comment l'expliquer, si on reprend les schémas d'architecture globale ?
     - Comment pourrait-on faire pour corriger le problème, s'il y en a un ?
+-->
