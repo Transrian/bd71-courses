@@ -158,7 +158,7 @@ En cherchant sur Internet, ou sur la page de documentation de l'[output Elastics
 
 > Ne pas utiliser ILM pour cette partie
 
-<!--**Solution**: [ici](resources/tp-2/answer/output_daily.md)-->
+**Solution**: [ici](resources/tp-2/answer/output_daily.md)
 
 ### 1.3 Index géré par ILM
 
