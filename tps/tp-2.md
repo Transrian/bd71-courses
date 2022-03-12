@@ -176,7 +176,7 @@ Pour la configuration de l'output Logstash, je vous invite à vous basez (après
 
 Après avoir **vérifié** que vous **ayez bien des données**, nous allons faire un brin de **configuration supplémentaire** sur les index, avant de passer à la partie la plus importante, la visualisation des données!
 
-<!--**Solution**: [ici](resources/tp-2/answer/output_ilm.md)-->
+**Solution**: [ici](resources/tp-2/answer/output_ilm.md)
 
 ### 1.3 Ajout d'Alias sur les index
 
