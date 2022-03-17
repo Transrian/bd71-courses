@@ -26,15 +26,15 @@ Ci-dessous une traduction de leur [page de description](https://www.elastic.co/g
 
 ## 2.1 Jeux de données
 
-Comme nous devons avoir un jeu de données relativement conséquent en taille, nous allons utiliser l'historique des prénoms en France, par département, de 1900 à 2019.
+Comme nous devons avoir un jeu de données relativement conséquent en taille, nous allons utiliser l'historique des prénoms en France, par département, de 1900 à 2020.
 
 > Pour les personnes utilisant le clusteur de BD71, aucun import des données n'est nécessaire, utiliser l'index `prenoms-france`, vous pouvez directement passer au point 2.2
 
-Les données sont téléchargeables à cette adresse: https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2019_csv.zip ([page d'origine](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262))
+Les données sont téléchargeables à cette adresse: https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2020_csv.zip ([page d'origine](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262))
 
-Téléchargez et dézippez le fichier zip, et vous devriez avoir un fichier CSV d'environ 70Mb.
+Téléchargez et dézippez le fichier zip, et vous devriez avoir un fichier CSV d'environ 79Mb.
 
-> Il faudra environ 140Mo de disque libre sur le clusteur Elasticsearch
+> Il faudra environ 180Mo de disque libre sur le clusteur Elasticsearch, pour ceux ayant leur propre clusteurs
 
 Ensuite, importer les données à l'aide du panel dans le machine learning (comme pour le TP précédent), et dans la partie **Override settings**, copié les paramètres ci-dessous:
 
