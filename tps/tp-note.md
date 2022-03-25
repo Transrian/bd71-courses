@@ -2,9 +2,9 @@
 
 **Modalités**:
   - TP à effectuer en groupe, note commune aux personnes du groupe
-  - Utiliser le Kibana dans le cloud: https://bd71.transrian.fr:5601
+  - Utiliser le Kibana dans le cloud: https://kibana.bd51.transrian.fr
   - Lisez le tp de bout en bout au début, et n'hésitez pas si vous avez des questions concernant la compréhension du TP
-  - 6 jours pour le faire, jusqu'au 13 avril à minuit, 5 points retirés par jour de retard.
+  - 8 jours pour le finir, jusqu'au 3 avril à minuit, 5 points retirés par jour de retard.
   - pour le rendu, m'envoyer un mail à valentin.bourdier@utbm.fr, avec les informations suivantes:
     - le groupe & les personnes le composant
     - un lien vers la dashboard
@@ -33,35 +33,28 @@ Basé sur [ce jeu de données](https://www.kaggle.com/htagholdings/aus-real-esta
 | `property_type` | Type de bien (house, unit or townhouse)   | unit                                |
 | `suburb`        | Voisinage (quartier)                      | Findon                              |
 
+Un évènement correspond à une **transaction** (une vente).
+
+De ce fait, pour avoir :
+
+- le nombre de transaction, il faut utiliser un `count`
+- la prix total des transaction, il faut utiliser une `sum`
+
 ## 1.3 Import des données
 
-**Récupérer le jeu de donnée** associé à votre groupe à l'adresse suivante: https://mega.nz/folder/3a5wEBrD#sYkoPgnro8jH7-zLxchzkQ, et ouvrir l'archive, un fichier json se trouve dedans.
-
-Pour **importer** le jeu de donnée **de votre groupe**, utiliser la fonctionnalité **Import Data**, comme pour les TPs précédent, dans la partie Machine Learning > Data Visualizer.
-
-Veuillez **nommer** votre **index** comme ceci: `<groupeX>-australia-sales` 
-
-Sur la **seconde fenêtre**, une fois les paramètres validés, cliquer sur **Advanced**, comme sur l'image suivante:
-
-![Advanced button](images/import_file_advanced.png)
-
-Et changer le **type** du champ `location` de **keyword** à **geo_point**, dans le cadre  appelé **Mappings**, comme sur l'image suivante:
-
-![Advanced button](images/modification_geopoint.png)
-
-> Vous ne devriez pas avoir d'erreurs d'insertion
+Les données ont déjà été importés, vous n'avez rien à faire!
 
 ## 1.4 Vérification de l'import des données
 
-Une fois les données importées, allez vérifier dans les Index patterns Kibana si vos données sont bien typées:
+Une fois les données importées, allez vérifier dans les Data Views Kibana si vos données sont bien typées:
     - les champs `bedrooms` & `price` devrait-être des **nombres**
     - le champ `location` devrait-être un **geo_point**
 
 Comme sur l'image suivante:
 
-![Australia sales index pattern](images/australia_sales_index_pattern.png)
+![Australia sales data view](images/australia_sales_index_pattern.png)
 
-De la même manière, dans le **Discover**, si vous regardez sur trois ans, vous devriez voir des données:
+De la même manière, dans le **Discover**, si vous regardez sur quatre ans, vous devriez voir des données:
 
 ![Australia basic discover](images/discover_australia.png)
 
@@ -86,7 +79,7 @@ Réaliser une **dashboard Kibana**, permettant de visualiser:
 9) L'évolution de la moyenne du prix ventes, par ville
 10) La répartition des ventes par nombre de pièces
 11) L'évolution du prix de vente, en fonction du nombre de pièces, au cours du temps
-12) (Pas obligatoire, il semblerait qu'il y ai un problèmes pour certains groupes) Une Saved Search (sauvegarde du Discover), permettant de visualiser les données, avec pour colonnes:
+12) Une Saved Search (sauvegarde du Discover), permettant de visualiser les données, avec pour colonnes:
     - Date
     - Nom de la ville
     - Type
