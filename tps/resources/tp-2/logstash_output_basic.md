@@ -6,7 +6,7 @@ output {
         user => "<groupeX>"
         password => "<groupeX>"
 
-        # Seulement nécessaire si:
+        # Paramètre suivant seulement nécessaire si:
         #   - 1. Vous utilisez Guacamole
         #   - 2. Il y a une erreur mentionnant le fait que Logstash ne reussisse pas
         #        a communiquer avec Elasticsearch

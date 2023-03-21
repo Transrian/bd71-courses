@@ -22,8 +22,8 @@ Nous pouvons voir:
 - la majorité des champs sont de type **string**
 - certains autres **types de champs** existent aussi, comme **ip**, **number**, **geopoint**
 - pour tous les champs **string**, il existe un champ **.keyword**
-    - le champ sans *.keyword* n'est **pas agrégable** -> il est uniquement utile lorsque nous allons faire des recherches de texte dans son contenu
-    - le champ avec *.keyword* **est aggrégable** -> nous allons l'utiliser principalement lors des **aggrégations**, dans les différentes visualisations Kibana.
+    - le champ **sans** *.keyword* n'est **pas agrégable** -> il est uniquement utile lorsque nous allons faire des recherches de texte dans son contenu
+    - le champ **avec** *.keyword* **est aggrégable** -> nous allons l'utiliser principalement lors des **aggrégations**, dans les différentes visualisations Kibana.
 
 Même si nous ne pouvons **pas modifier leur contenu** directement, nous pouvons modifier, à travers l'interface, la **manière** dont le champ sera **affiché** dans l'interface. Si nous prenons exemple d'un champ sous format nombre (alors qu'il s'agit en réalité de bytes), nous allons être capable de le définir pour le champ en question, comme dans la capture suivante:
 

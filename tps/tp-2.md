@@ -136,7 +136,7 @@ Le **filtre**, quant à lui, est **beaucoup plus complexe**. Même si le format 
 
 Dans un premier temps, nous allons juste écrire les données venant de notre buffer dans un unique index Elasticsearch.
 
-Créer une nouvelle **pipeline Logstash**, et ajouter, en plus de l'input & du filter, l'output suivant.
+Créer une nouvelle **pipeline Logstash**, et ajouter, en plus de l'input & du filter, l'output suivant:
 
 [resources/tp-2/logstash_output_basic.md](resources/tp-2/logstash_output_basic.md ':include')
 
@@ -157,6 +157,8 @@ Maintenant, nous allons configurer Logstash pour qu'il génère **un index par j
 En cherchant sur Internet, ou sur la page de documentation de l'[output Elasticsearch](https://www.elastic.co/guide/en/logstash/7.17/plugins-outputs-elasticsearch.html) (mais mal indiqué), essayer de réaliser ça, et tester, en **modifiant l'output** de la pipeline précédente!
 
 > Ne pas utiliser ILM pour cette partie
+
+**Rappel:**: Un output journalier, comme précédamment décrit,doit génrérer des index avec un format comme celui-ci: `<nom_index>-2021.05.02`
 
 <!---
 **Solution**: [ici](resources/tp-2/answer/output_daily.md)
@@ -204,7 +206,7 @@ PUT _template/groupeX_access
     "settings" : {
       "index" : {
         "number_of_shards" : "3",
-        "number_of_replicas" : "1"
+        "number_of_replicas" : "0"
       }
     },
     "mappings" : { },
@@ -222,7 +224,7 @@ Celle-ci **va nous permettre**, pour les nouveaux index se créant, de définir:
 Pour appliquer l'**alias** sur nos **index actuels**, rien de plus simple, cette commande suffit:
 
 ```
-PUT groupe3-access_ilm-*/_alias/GROUPE3_ACCESS
+PUT groupex-access_ilm-*/_alias/GROUPEX_ACCESS
 ```
 
 Pour **vérifier que notre alias existe désormais**, nous allons faire une recherche, simple, en l'utilisant:
