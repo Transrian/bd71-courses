@@ -414,9 +414,7 @@ Si vous le testez sans modification, certains messages auront un **tags** `_grok
 
 > Aide: Le mot clé est dans le titre.. **multiline**, à chercher dans la documentation
 
-<!---
 **Solution**: [ici](resources/tp-1/answer/2.md)
--->
 
 #### 2.3 Apache access logs
 
@@ -433,9 +431,7 @@ En vous servant de la [documentation logging apache](https://httpd.apache.org/do
 - le champ date doit-être bien formaté
 - les champs sous format nombre doivent-être convertis en nombre
 
-<!---
 **Solution**: [ici](resources/tp-1/answer/3.md)
--->
 
 #### 2.4 Data venant d'un CSV
 
@@ -445,9 +441,7 @@ Nous pouvons traiter de nombreux types de données avec Logstash, dont des [CSV]
 
 Réaliser le filter, et tester
 
-<!---
 **Solution**: [ici](resources/tp-1/answer/4.md)
--->
 
 #### 2.5 JSON logs
 
@@ -457,9 +451,8 @@ Nous avons maintenant des logs web, dans un format [JSON](https://fr.wikipedia.o
 
 Même processus.
 
-<!---
+
 **Solution**: [ici](resources/tp-1/answer/5.md)
--->
 
 ### 3. Questions ouvertes
 

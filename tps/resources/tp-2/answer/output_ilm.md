@@ -1,7 +1,7 @@
 ```ruby
 output {
     elasticsearch {
-        hosts => ["https://elasticsearch.bd51.transrian.fr:443"]
+        hosts => ["https://elasticsearch.bd71.transrian.fr:443"]
         ilm_rollover_alias => "<groupeX>-access_ilm"
         ilm_pattern => "000001"
         ilm_policy => "<groupeX>-access-logs"

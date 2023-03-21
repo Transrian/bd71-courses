@@ -1,7 +1,7 @@
 ```ruby
 output {
     elasticsearch {
-        hosts => ["https://elasticsearch.bd51.transrian.fr:443"]
+        hosts => ["https://elasticsearch.bd71.transrian.fr:443"]
         index => "<groupeX>-access-%{+YYYY.MM.dd}"
         user => "<groupeX>"
         password => "<groupeX>"

@@ -41,7 +41,7 @@ Ci dessous un schéma simplifié de l'architecture (certaines flèches sont manq
 Pour les URLs, vous pouvez **utilisez les urls dessous**, il s'agit des instances, derrière le load-balancer Nginx.
 
 **Kibana**:
-- https://kibana.bd51.transrian.fr
+- https://kibana.bd71.transrian.fr
 
 **Elasticsearch**:
-- https://elasticsearch.bd51.transrian.fr
+- https://elasticsearch.bd71.transrian.fr

@@ -2,7 +2,7 @@
 
 **Modalités**:
   - TP à effectuer en groupe, note commune aux personnes du groupe
-  - Utiliser le Kibana dans le cloud: https://kibana.bd51.transrian.fr
+  - Utiliser le Kibana dans le cloud: https://kibana.bd71.transrian.fr
   - Lisez le tp de bout en bout au début, et n'hésitez pas si vous avez des questions concernant la compréhension du TP
   - 8 jours pour le finir, jusqu'au 3 avril à minuit, 5 points retirés par jour de retard.
   - pour le rendu, m'envoyer un mail à valentin.bourdier@utbm.fr, avec les informations suivantes:

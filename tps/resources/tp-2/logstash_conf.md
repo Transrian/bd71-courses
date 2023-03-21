@@ -5,7 +5,7 @@
 ```ruby
 input {
       elasticsearch {
-        hosts => "https://elasticsearch.bd51.transrian.fr:443"
+        hosts => "https://elasticsearch.bd71.transrian.fr:443"
         query => '{ "query": { "range": { "@timestamp": { "gte": "now-1m/m" } } }, "_source": [ "host", "@timestamp", "message", "path" ] } '
         user => "<groupeX>"
         password => "<groupeX>"

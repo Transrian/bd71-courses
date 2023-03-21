@@ -50,7 +50,7 @@ Avec Elasticsearch, nous avons deux moyens:
 - générer des index, avec un **postfix temporel** (par mois, jour, etc..). Par exemple:
   - mon_index-2021.05
   - mon_index-2021.05.02
-- avec [ILM](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html)(Index Lifecycle Policy) : Elasticsearch va **gérer lui-même** quand créer un nouvel index, à partir des paramètres que vous aurez préalablement définis (nous verrons cela plus tard). Par exemple:
+- avec [ILM](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html) (Index Lifecycle Policy) : Elasticsearch va **gérer lui-même** quand créer un nouvel index, à partir des paramètres que vous aurez préalablement définis (nous verrons cela plus tard). Par exemple:
   - mon_index-000001
   - mon_index-000002
   - mon_index-000003
@@ -84,8 +84,8 @@ Chaque groupe a donc un utilisateur créer, avec pour username / password le cou
 > Pour le Groupe 3, user/mdp sera groupe3/groupe3
 
 Des exemples d'URL (présent sur chaque noeud), cf. page d'architecture globale:
-- **Elasticsearch**: https://elasticsearch.bd51.transrian.fr
-- **Kibana**: https://kibana.bd51.transrian.fr
+- **Elasticsearch**: https://elasticsearch.bd71.transrian.fr
+- **Kibana**: https://kibana.bd71.transrian.fr
 
 Comme vous ne serez pas admin sur le cluster Elasticsearch, vos droits sont restreints:
 - nous ne **verrez pas toutes les données** (seulement les vôtres, ainsi que quelques-unes génériques)
@@ -154,11 +154,13 @@ Si tout c'est bien passé, après avoir vérifié de la même manière que l'exe
 
 Maintenant, nous allons configurer Logstash pour qu'il génère **un index par jour**, afin que nos index ne soient pas trop gros.
 
-En cherchant sur Internet, ou sur la page de documentation de l'[output Elasticsearch](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html) (mais mal indiqué), essayer de réaliser ça, et tester, en **modifiant l'output** de la pipeline précédente!
+En cherchant sur Internet, ou sur la page de documentation de l'[output Elasticsearch](https://www.elastic.co/guide/en/logstash/7.17/plugins-outputs-elasticsearch.html) (mais mal indiqué), essayer de réaliser ça, et tester, en **modifiant l'output** de la pipeline précédente!
 
 > Ne pas utiliser ILM pour cette partie
 
+<!---
 **Solution**: [ici](resources/tp-2/answer/output_daily.md)
+-->
 
 ### 1.3 Index géré par ILM
 
@@ -172,15 +174,17 @@ Avant de pouvoir configurer Logstash pour utiliser ILM, nous devons créer une p
 
 Une fois la policy créer, il est temps de **configurer la sortie Logstash** (vous pouvez vous baser également sur la configuration précédente).
 
-Pour la configuration de l'output Logstash, je vous invite à vous basez (après avoir lu la doc) de cet [exemple](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-ilm), en adaptant le **rollover alias** et la **policy ilm** à votre configuration. Le **rollover alias** va correspondre au préfix de l'index (cf. explications précédentes sur le cycle de vie de la donnée), vous pouvez utiliser `<groupeX>-access_ilm`
+Pour la configuration de l'output Logstash, je vous invite à vous basez (après avoir lu la doc) de cet [exemple](https://www.elastic.co/guide/en/logstash/7.17/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-ilm), en adaptant le **rollover alias** et la **policy ilm** à votre configuration. Le **rollover alias** va correspondre au préfix de l'index (cf. explications précédentes sur le cycle de vie de la donnée), vous pouvez utiliser `<groupeX>-access_ilm`
 
 Après avoir **vérifié** que vous **ayez bien des données**, nous allons faire un brin de **configuration supplémentaire** sur les index, avant de passer à la partie la plus importante, la visualisation des données!
 
+<!---
 **Solution**: [ici](resources/tp-2/answer/output_ilm.md)
+-->
 
 ### 1.3 Ajout d'Alias sur les index
 
-Pour pouvoir accéder plus facilement aux données, nous allons créer un [alias](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html) sur les index ILMs.
+Pour pouvoir accéder plus facilement aux données, nous allons créer un [alias](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/indices-aliases.html) sur les index ILMs.
 
 Cela va se traduire en deux phases:
 - dans un premier temps, nous allons **créer un index template**, associé à l'index pattern de nos index, qui s'appliquera lors de la **création des nouveaux index**

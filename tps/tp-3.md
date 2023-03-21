@@ -177,9 +177,46 @@ Dans l'ordre, pour créer votre dashboard, il faudra:
 - créer les saved search (discover)
 - créer la dashboard
 
-Vous pouvez essayer de répliquer, en partie ou totalement, la dashboard suivante:
-
 ![Interface du discover](resources/tp-3/images/full_dashboard.png)
+
+Vous pouvez essayer de répliquer, en partie ou totalement, la dashboard précédente.  **Dans l'ordre, par ligne:**
+
+**Ligne 1:**
+
+- Répartition des code retour http, par catégorie (2XX, 3XX, 4XX), au cours du temps
+- Répartition global du nombre de success / failures
+- Nombre de requêtes (=nombre d'évènements insérés)
+- Nombre de serveurs
+- Nombre de clients (source ip)
+
+**Ligne 2:**
+
+- Répartition des requêtes par serveur au court du temps
+- Répartition des requêtes par serveur
+
+**Ligne 3:**
+
+- Répartition des requêtes par frontend proxy
+- Répartition des requêtes par backend url
+- Les 10 urls les plus appelés
+- Répartition de la méthode http utilisée
+
+**Ligne 4:**
+
+- Graph affichant en abcisse, le nombre d'évènement, et en ordonnée, le taille en bytes de la requête
+- Evolution au cours du temps de la durée moyenne d'un évènement
+- Top 10 des utilisateurs ayant fait le plus de requêtes
+
+**Ligne 5:**
+
+- Evolution au cours du temps du nombre de requête par IP (top 10 des IPs)
+- Tableau contenant les IPs ayant effectué le plus de requêtes, et leur nombre
+- L'OS du navigateur client
+- Les users agents du navigateur client
+
+**Ligne 6:**
+
+- Une *Saved Search* contenant l'URL, le status code, et l'adresse IP du client
 
 ## 2. Question ouverte
 
