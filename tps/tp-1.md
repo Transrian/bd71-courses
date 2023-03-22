@@ -460,4 +460,4 @@ Qui seront discutés au début du tp suivant:
 
 - Est-ce que la transformation des données est simple ?
 - Les données de l'exercice 2.3 et 2.5 sont les mêmes : lesquelles sont plus simples à traiter ? Et pourquoi ?
-- Vaut-il mieux formater ses logs dans une application elle-même, ou à postériori, dans une phase de transformation ?
+- Dans le cadre d'exploitation de logs vaut-il mieux formater ses logs dans une application elle-même, ou à postériori, dans une phase de transformation ?
