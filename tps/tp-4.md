@@ -14,7 +14,7 @@ Nous allons utiliser une fonctionnalité de Kibana allant nous permettre d'**ins
 Pour ce faire, aller dans la partie **Machine Learning** (dans Analytics), et utiliser la fonction **Import data**.
 
 Nous allons importer **un fichier à la fois**.
-- Pour les **données de la France**, il faut augmenter (une fois la première analyse faite), le **nombre de lignes a analysé** de 1000 (défaut) à 22000 (sinon, le département est considéré comme un nombre, au lieu d'une chaine de caractère). Vous pouvez appeler l'index résultat. `<groupeX>-covid-france`
+- Pour les **données de la France**, il faut augmenter (une fois la première analyse faite), le **nombre de lignes a analysé** de 1000 (défaut) à 35000 (sinon, le département est considéré comme un nombre, au lieu d'une chaine de caractère), dans la partie **Override settings**. Vous pouvez appeler l'index résultat. `<groupeX>-covid-france`
 - Pour les **données mondiales**, même processus, changer le **nombre de ligne à analyser** de 1000 (défaut) à 10000, puis aller à l'étape suivante, et entrer un nom d'index, comme `<groupeX>-covid`
 
 Si vous regarder vos **index pattern Kibana**, vous pouvez voir qu'ils ont été créés, lors de l'insertion des données, donc vous n'avez rien de plus à faire!
@@ -94,7 +94,7 @@ Si vous regarder vos **index pattern Kibana**, vous pouvez voir qu'ils ont été
 Pour faire une **carte**, vous pouvez utiliser le **champ**:
 - `iso_code` pour afficher par région
 
-> N.B. certaines données, avec un `iso_code` commencant par `OWID_`, sont des données cumulées par région géographiques (continents, monde)
+> N.B. certaines données, avec un `iso_code` commencant par `OWID_`, sont des données cumulées par région géographiques (continents, monde). **Il faut les utiliser** pour toutes les **stats globale**, c'est à dire non-relatives à un pays en particulier.
 
 #### 2.1.1 Données Françaises
 
@@ -146,8 +146,8 @@ Pour les données:
 
 Faites une dashboard répondant aux questions suivantes (le type de visualisation peut-être, indiqué):
 
-- Affichage du **nombre de cas total**, **morts totales**, et du **nombre de vaccinations total**, dans le monde
-- Suivre l'**évolution** des **nouveaux cas**, **nouvelles morts**, et **nouvelles vaccinations** au **cours du temps**
+- Affichage du **nombre de vaccinations total**, dans le monde
+- Suivre l'**évolution** des **nouveaux cas**, **nouvelles morts**, et **nouvelles vaccinations** dans le monde au **cours du temps**
 - Affichage des **5 pays** avec le plus de **nouveaux cas**, et leur évolution au cours du temps
 - Quels sont les **3 pays** avec le plus de **nouveaux cas**, **proportionnellement à leur population** ?
 - Affichage de deux **cartes**, avec le **nombre de cas total** & le **nombre de morts total**, par pays. Quels sont les 3 pays les plus touchés, pour ces deux métriques ?

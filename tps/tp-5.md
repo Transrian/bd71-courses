@@ -45,6 +45,8 @@ Nous allons donc utiliser **deux filtres** (et leurs variations) pour la créati
 
 ### 1.2.1 Filtre sur une agrégation
 
+> **Nous utiliserons ce filtre plus tard dans le TP**
+
 Pour filtrer sur un seul pays / agrégation de données -> Changer la valeur de **iso_code** par ce qui est nécessaire
 
 ```json
@@ -70,11 +72,11 @@ Pour filtrer sur un seul pays / agrégation de données -> Changer la valeur de 
 }
 ```
 
-> **Nous utiliserons ce filtre plus tard dans le TP**
-
 ### 1.2.1 Filtre pour exclure les agrégations
 
-Supprime toutes les agrégations de données (monde, continent)
+> **Nous utiliserons ce filtre plus tard dans le TP**
+
+Supprime toutes les agrégations de données (monde, continent) de la recherche
 
 ```json
 {
@@ -100,8 +102,6 @@ Supprime toutes les agrégations de données (monde, continent)
   }
 }
 ```
-
-> **Nous utiliserons ce filtre plus tard dans le TP**
 
 ## 2.2 Exercices
 
@@ -212,7 +212,7 @@ La vue **Anomaly Explorer** est beaucoup plus synthétique que la vue **Single M
 
 > N'oubliez pas les filtres!
 
-**Nouvelles morts causé par le COVID en France**
+**Nouvelles morts causé par le COVID en France** *(jeu de donnée monde)*
 
 - Réaliser, avec un **Single Metric**, un modèle basé sur le nombre de nouvelles morts, en France (le code ISO de la France est `FRA`)
 - Refaites la même chose, mais en changeant le **bucket span** à **2 jours**
@@ -223,7 +223,7 @@ Questions:
 - Quel modèle est le plus précis ? Et pourquoi ?
 - D'après l'algorithme d'apprentissage, les morts vont elles augmentés / diminuer, d'ici 1 semaine ?
 
-**Nouveaux cas par pays**
+**Nouveaux cas par pays** *(jeu de donnée monde)*
 
 Réalisez, avec un **Multi-metric**, un modèle représentant l'évolution des nouveaux cas par pays (vous pouvez splitter soit sur `iso_code`, soit sur `location`)
 
@@ -232,17 +232,17 @@ Questions:
 - Sur les 6 derniers mois, quel est le pays ayant eu une évolution anormale ? Pourquoi ?
 - Et sur 12 mois ?
 
-**Évolutions différentes par pays**
+**Évolutions différentes par pays** *(jeu de donnée monde)*
 
-À l'aide du job de **Population**, déterminer quel est le pays ayant eu une croissance anormale des cas, comparativement à sa taille de population
+À l'aide du job de **Population**, déterminer quel est le pays ayant eu une croissance anormale des cas, comparativement à sa taille de population *(new_cases_per_million)*
 
 Questions:
 
 - Le premier résultat, sur les 6 derniers mois, est-il valable ?
 - Quelle caractéristique possèdent les premiers résultats (à votre avis) : pourquoi ceux-là et pas d'autres, telle que la France ou les États-Unis ?
 
-**Impact de la région sur les cas de COVID en France**
+**Impact de la région sur les cas de COVID en France** *(jeu de donnée France)*
 
 (pas besoin de filtres)
 
-En réutilisant le jeu de données sur la France (`<groupeX>-covid-france`), et en créant le modèle adapté, combien de pourcentage de départements (environ) ont une croissance des hospitalisations anormales ?
+En réutilisant le jeu de données sur la France (`<groupeX>-covid-france`), et en créant le modèle adapté, combien de pourcentage de départements (vous savez le nombre de département en france, et sont affichés dans le résultats seulement les départements considérés comme  anormaux) ont une croissance des hospitalisations anormales sur la dernière année ?
