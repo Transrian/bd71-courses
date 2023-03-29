@@ -115,7 +115,7 @@ En termes de visualisations:
 6) nombre de naissances par sexe (trois colonnes, multiples lignes)
 7) diversité des colonnes par sexe (trois colonnes, multiples lignes)
 
-> Toutes les **requêtes SQL** sont faites et présentes dans la partie suivante!
+> Toutes les **requêtes SQL** sont faites et présentes pour-être utilisées dans la partie suivante!
 
 ### 2.3 Requêtes SQL à utiliser
 
@@ -185,7 +185,9 @@ GROUP BY "@timestamp", sexe
 
 ### 2.3 Exemple de Canvas
 
-Ci-dessous un exemple de Canvas, que vous pouvez réaliser pour présenter ces données. (PS. je ne suis vraiment pas doué en graphisme). **Essayer de faire quelque chose de mieux**, en explorant toutes les fonctionnalités de Canvas!
+Ci-dessous un exemple de Canvas que j'ai réalisé, en utilisasnt les requêtes précédentes. (PS. et oui, je ne suis vraiment pas doué en graphisme). 
+
+**Essayer de faire quelque chose de mieux**, en explorant toutes les fonctionnalités de Canvas!
 
 ![canvas picture](images/canvas_image.png)
 

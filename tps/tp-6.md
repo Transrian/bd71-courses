@@ -14,9 +14,9 @@ Il est **très rare** de devoir stocker les logs plus de 1 mois. En effet, à mo
 
 Par défaut, avec Kibana, ils sont **calculés dynamiquement** (à partir des données brutes), comme une moyenne, ou une somme. Néanmoins, il est possible de faire autrement!
 
-Dans Elasticsearch, il existe deux moyens d'agréger les données déjà existantes : avec des [transform](https://www.elastic.co/guide/en/elasticsearch/reference/current/transforms.html), et des [rollups](https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html). C'est cette dernière méthode qui va nous intéresser ici.
+Dans Elasticsearch, il existe deux moyens d'agréger les données déjà existantes : avec des [transform](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/transforms.html), et des [rollups](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/xpack-rollup.html). C'est cette dernière méthode qui va nous intéresser ici.
 
-Ci-dessous une traduction de leur [page de description](https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html) de la fonctionnalité, très pertinente:
+Ci-dessous une traduction de leur [page de description](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/xpack-rollup.html) de la fonctionnalité, très pertinente:
 
 > Garder les données historiques pour réaliser des analyses est très utile, mais souvent évité à cause du haut coût de stockage (à cause de l'archivage de toutes ces données). Les périodes de rétentions sont alors définies pour des raisons financières, plutôt que par des raisons d'utilité des données.
 > 
@@ -30,9 +30,9 @@ Comme nous devons avoir un jeu de données relativement conséquent en taille, n
 
 > Pour les personnes utilisant le clusteur de BD71, aucun import des données n'est nécessaire, utiliser l'index `prenoms-france`, vous pouvez directement passer au point 2.2
 
-Les données sont téléchargeables à cette adresse: https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2020_csv.zip ([page d'origine](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262))
+Les données sont téléchargeables à cette adresse: https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2021_csv.zip ([page d'origine](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262))
 
-Téléchargez et dézippez le fichier zip, et vous devriez avoir un fichier CSV d'environ 79Mb.
+Téléchargez et dézippez le fichier zip, et vous devriez avoir un fichier CSV d'environ 80Mb.
 
 > Il faudra environ 180Mo de disque libre sur le clusteur Elasticsearch, pour ceux ayant leur propre clusteurs
 
@@ -49,7 +49,7 @@ Il faut:
 - Changer le mapping du champ `departement` de **long** à **string** (partie surligné sur le bloc central)
 - Supprimer de la partie **Ingest pipeline** le **convert du champs ``departement`` en ``long``** (partie surlignée sur le bloc de droite)
 
-Une fois l'import lancé (vous devriez avoir des erreurs, dues à des erreurs dans le fichier d'origine), l'index pattern sera créer, et vous n'avez plus qu'à passer à l'étape suivante!
+Une fois l'import lancé (**vous devriez avoir des erreurs**, dues à des erreurs dans le fichier d'origine), l'index pattern sera créer, et vous n'avez plus qu'à passer à l'étape suivante!
 
 ## 2.2 Structure du jeu de données
 
@@ -99,8 +99,8 @@ Le processus de création d'un job rollups est décomposé en 6 phases:
 
 Nous allons successivement **créer 2 rollups jobs** (un pour le nombre de naissances par an, un pour le nombre de naissances par département par an). Les paramètres sont les suivants:
 
-- **Logistic**: (Changer name & rollup index name pour le deuxième)
-    - **name**: groupeX-prenoms-annuel
+- **Logistic**: -> (Changer name & rollup index name lors de la création du deuxième job par `groupeX-prenoms-departements` )
+    - **name**: groupeX-prenoms-annuels
     - **index-pattern**: prenoms-france
     - **rollup index name**: groupeX-prenoms-annuels
     - **frequency**: every minute
@@ -111,16 +111,15 @@ Nous allons successivement **créer 2 rollups jobs** (un pour le nombre de naiss
     - **time bucket size**: 1y
     - **timezone**: UTC
 - **Terms**:
-    - pour le premier, aucun
-    - pour le second, **departement**
+    - pour le premier job, aucun
+    - pour le second job, **departement**
 - **Histogram**: Aucun
 - **Metrics**:
-    - champs **nombre**, toutes les métriques
+    - champs **nombre**, les métriques `annee`, `nombre` et `sexe` 
 - **Review and save**:
     - vérifiez que le cron job soit bien à `0 * * * * ?`, sinon reparter sur la partie logistic (cf. nb)
     - cocher "start job now", et sauvegarder le job!
 
-> N.B. Pour la sélection de la fréquence, le défaut est minute. **Néanmoins**, sélectionner une autre fréquence (ex. hour), puis retourner sur **minute** (à cause d'un bug)
 
 Il vous faudra **attendre au maximum une minute** (frequency) pour que le job soit lancer, mais une fois démarrer, vous pourrez voir les progrès de celui-ci, en cliquant sur lui dans la liste des rollups jobs (en bas à droite):
 
@@ -136,12 +135,12 @@ Pour que vous puissiez **voir vos index** dans la partie index management, il ne
 
 Il en est de même lorsque vous allez **créer vos deux index patterns**, il va falloir sélectionner **Rollup index pattern**, à la  place de **Standard index pattern**
 
-Vous pouvez refaire les deux visualisations précédentes, en vous servant des **nouveaux index rollups**, et **intégrer les sur la dashboard** que vous avez créée, pour pouvoir comparer les deux (données brutes, et données rollups)
+Refaites les deux visualisations précédentes, en vous servant des **nouveaux index rollups**, et **intégrer les sur la dashboard** que vous avez créée, pour pouvoir comparer les deux (données brutes, et données rollups). Le résultat, données brutes vs données aggrégées, devrait-être quasiment identique.
 
 > Il y a un bug sur la fonctionnalité, les données ne sont traitées qu'après 1970
 
 **Questions**:
 
-  - Est-ce que les données affichées sont les mêmes ? Sinon, pourquoi ?
-  - Quel est le ratio des données stocké avant / après pour nos deux uses-cases ?
-  - Pourrions-nous nous passez d'un de nos deux index rollups, pour afficher les deux visualisations ?
+  - Est-ce que les données affichées sont les mêmes ?
+  - Quel est le ratio des données stocké avant / après pour nos deux uses-cases ? En comparant la taille des indexs ?
+  - Pourrions-nous nous passez d'un de nos deux index rollups, pour afficher les deux visualisations que vous avez créer à partir des données rollups ?
