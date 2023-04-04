@@ -4,9 +4,9 @@
 * [TP 3 - Dashboarding avec Kibana](/tps/tp-3.md)
 * [TP 4 - Visualisations de données COVID](/tps/tp-4.md)
 * [TP 5 - Machine Learning](/tps/tp-5.md)
-<!--* [TP 6 - Rollups](/tps/tp-6.md)
-* [TP 7 - TP Noté](/tps/tp-note.md)
+* [TP 6 - Rollups](/tps/tp-6.md)
 * [TP 7 - Canvas](/tps/tp-7.md)
+<!-- * [TP 7 - TP Noté](/tps/tp-note.md)
 * [TP bonus 1 - Installation ELK local](/tps/tp-bonus.md)
 * [TP bonus 2 - Elasticsearch queries](/tps/tp-bonus-2.md)
 --> 
