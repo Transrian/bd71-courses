@@ -101,7 +101,7 @@ Ensuite, créer dans cette dashboards **des visualisations** permettant de repr�
 2) le nombre totale de transactions
 3) le prix moyen (médianne) des biens vendus
 4) le prix moyen (médianne) des biens vendus par type de bien
-5) un tableau avec la moyenne des biens vendus & la moyenne du prix par m2, par département (100 premiers)
+5) un tableau avec la moyenne des prix des biens vendus & la moyenne du prix par m2, par département (100 premiers)
 6) le nombre de ventes, au cours du temps, par type de bien
 7) la moyenne (médianne) du prix des ventes, au cours du temps, par type de bien
 8) Une carte représentant la moyenne du prix ventes
