@@ -141,7 +141,7 @@ path.logs: "./logs"
 Puis créez le dossier qui va servir à contenir nos fichiers de configurations:
 
 ```bash
-mkdir -p "./conf/my-first-test"
+mkdir "conf" "conf/my-first-test"
 ```
 
 Ainsi que deux autres dossiers, que nous utiliserons plus tard:
@@ -150,7 +150,7 @@ Ainsi que deux autres dossiers, que nous utiliserons plus tard:
 mkdir output input
 ```
 
-Puis nous allons créer dans ce dossier notre fichier de configuration logstash, au chemin `./conf/my-first-test/logstash.conf`:
+Puis nous allons créer dans ce dossier notre fichier de configuration logstash, au chemin `./conf/my-first-test/logstash.conf` (se référer au schéma de l'architecture des dossiers dans la partie suivante si vous êtes perdu):
 
 ```ruby
 input {
@@ -169,7 +169,7 @@ output {
 Enfin, lançons Logstash, en prenant en compte ces fichiers de configuration:
 
 ```bash
-<commande_logstash> -f conf/my-first-test
+<commande_logstash> -f "conf/my-first-test"
 ```
 
 Si tout fonctionne bien, vous devriez avoir le même résultat qu'au premier test que nous avons effectuer (avec plus de logs), et un format de sortie légèrement différent:
@@ -254,7 +254,7 @@ Pour chaque nouvel exercice, il va vous être demandé, pour créer une nouvelle
 
 - De créer le / les fichiers de données initiaux, à faire dans le dossier `input` (si nécessaire)
 - De créer un nouveau dossier, qui correspondra au nom de votre pipeline, dans `conf` (et de mettre les fichiers de configuration Logstash dedans)
-- De modifier la ligne de commande, utilisée lors du dernier test, pour pointer vers le bon dossier (`<commande_logstash> -f conf/<mon-dossier-pipeline>`)
+- De modifier la ligne de commande, utilisée lors du dernier test, pour pointer vers le bon dossier (`<commande_logstash> -f "conf/<mon-dossier-pipeline>"`)
 
 ### 2. Exercices
 
@@ -300,8 +300,10 @@ En l'occurrence, il s'agit d'un format, dérivé du format de log [syslog](https
 Commençons déjà par créer la pipeline de Logstash:
 
 ```bash
-mkdir -p conf/auth
+mkdir "conf/auth"
 ```
+
+La partie suivante est une **explication** du contenu du fichier. Il sera explicitement **écrit** quand vous **devrez créer** le fichier en question.
 
 **Input**
 
@@ -319,7 +321,7 @@ input {
 }
 ```
 
-!> Sur Windows, remplacez `/dev/null` par `NUL`
+!> Sur Windows, vous devrez remplacer `/dev/null` par `NUL`
 
 **Filter**
 
@@ -375,11 +377,16 @@ Une fois ces parties faites (vous pourrez réutiliser l'input & l'output pour le
 Créons le fichier `conf/auth/logstash.conf` avec pour contenu la concaténation de ces trois parties:
 
 ```ruby
+# Chemin complet doit uniquement contenir des '/' (et non pas des '\'), même sous Windows!
+
 input {
     file {
         path => "<chemin complet>/input/auth.log"
-        sincedb_path => "/dev/null"
         start_position => "beginning"                              
+
+        # Supprimer celui des deux qui ne s'applique pas
+        sincedb_path => "/dev/null" # Linux
+        sincedb_path => NUL # Windows
     }
 }
 
@@ -415,7 +422,7 @@ output {
 Et lançons Logstash:
 
 ```bash
-<commande_logstash> -f conf/auth
+<commande_logstash> -f "conf/auth"
 ```
 
 Le résultat du fichier de destination, `output/auth-transforme.log`, devrait-être tel que [celui-ci](resources/tp-1/output_auth.md)
