@@ -21,6 +21,8 @@ Dans un premier temps, nous allons **installer Logstash**, et dans un second tem
 
 > Il est **extrêmement recommandé** d'exécuter les commandes suivantes dans un répertoire **local**, et non pas sur un **disque réseau**
 
+**Linux:**
+
 Ouvrez un shell et tapez les commandes suivantes:
 
 ```bash
@@ -37,21 +39,41 @@ rm logstash.tar.gz
 cd logstash-8.0.0
 ```
 
-Maintenant que Logstash est téléchargé, effectuons un test sommaire pour voir si il est correctement configuré:
+Le lancement du **binaire logstash** se fait avec la commande, et vous l'utiliserez dans toutes les commandes:
+
+```bash
+JAVA_HOME='' ./bin/logstash
+```
+
+**Windows:**
+
+Télécharger le contenu de [cette archive](https://artifacts.elastic.co/downloads/logstash/logstash-8.0.0-windows-x86_64.zip), et dezippez-là dans  **un répertoire local**, et non pas sur un **disque réseau**: 
+
+Puis **ouvrez un shell**, pour aller dans le répertoire que vous venez de dézipper.
+
+Le lancement du **binaire logstash** se fait avec la commande, et vous l'utiliserez dans toutes les commandes:
+
+```bash
+.\bin\logstash.bat
+```
+
+**Linux + Windows:**
+
+Maintenant que Logstash est téléchargé, effectuons un **test** sommaire pour voir si il est correctement configuré (**remplacer la commande** par la bonne commande, dans les blocs précédents):
 
 ```bash
 # Vérification de la version de logstash
-JAVA_HOME='' ./bin/logstash --version
+<commande_logstash> --version
 ```
 
-Vous devez obtenir un message comme celui-ci (le chemin du jdk utilisé est important):
+Vous devez obtenir un message comme celui-ci (le chemin du jdk utilisé n'est pas important):
 
 ```
 Using bundled JDK: /my/path/to/logstash/directory/logstash-8.0.0/jdk
 logstash 8.0.0
 ```
 
-Si ce n'est pas le cas, il y a probablement un problème.
+Si ce n'est pas le cas, il y a probablement un problème, appellez votre examinateur.
 
 #### 1.1.2 Test de Logstash
 
@@ -62,7 +84,7 @@ Lancez la commande suivante:
 cd logstash-8.0.0
 
 # Lancement de logstash avec une configuration en ligne de commande
-JAVA_HOME='' ./bin/logstash --log.level=error -e "input { stdin { type => stdin } } output { stdout { codec => rubydebug } }"
+<commande_logstash> --log.level=error -e "input { stdin { type => stdin } } output { stdout { codec => rubydebug } }"
 ```
 
 Une fois la ligne suivante affichée:
@@ -147,7 +169,7 @@ output {
 Enfin, lançons Logstash, en prenant en compte ces fichiers de configuration:
 
 ```bash
-JAVA_HOME='' ./bin/logstash -f conf/my-first-test
+<commande_logstash> -f conf/my-first-test
 ```
 
 Si tout fonctionne bien, vous devriez avoir le même résultat qu'au premier test que nous avons effectuer (avec plus de logs), et un format de sortie légèrement différent:
@@ -232,7 +254,7 @@ Pour chaque nouvel exercice, il va vous être demandé, pour créer une nouvelle
 
 - De créer le / les fichiers de données initiaux, à faire dans le dossier `input` (si nécessaire)
 - De créer un nouveau dossier, qui correspondra au nom de votre pipeline, dans `conf` (et de mettre les fichiers de configuration Logstash dedans)
-- De modifier la ligne de commande, utilisée lors du dernier test, pour pointer vers le bon dossier (`JAVA_HOME='' ./bin/logstash -f conf/<mon-dossier-pipeline>`)
+- De modifier la ligne de commande, utilisée lors du dernier test, pour pointer vers le bon dossier (`<commande_logstash> -f conf/<mon-dossier-pipeline>`)
 
 ### 2. Exercices
 
@@ -296,6 +318,8 @@ input {
     }
 }
 ```
+
+!> Sur Windows, remplacez `/dev/null` par `NUL`
 
 **Filter**
 
@@ -391,7 +415,7 @@ output {
 Et lançons Logstash:
 
 ```bash
-JAVA_HOME='' ./bin/logstash -f conf/auth
+<commande_logstash> -f conf/auth
 ```
 
 Le résultat du fichier de destination, `output/auth-transforme.log`, devrait-être tel que [celui-ci](resources/tp-1/output_auth.md)
@@ -414,7 +438,7 @@ Si vous le testez sans modification, certains messages auront un **tags** `_grok
 
 > Aide: Le mot clé est dans le titre.. **multiline**, à chercher dans la documentation
 
-**Solution**: [ici](resources/tp-1/answer/2.md)
+<!-- **Solution**: [ici](resources/tp-1/answer/2.md) -->
 
 #### 2.3 Apache access logs
 
@@ -431,7 +455,7 @@ En vous servant de la [documentation logging apache](https://httpd.apache.org/do
 - le champ date doit-être bien formaté
 - les champs sous format nombre doivent-être convertis en nombre
 
-**Solution**: [ici](resources/tp-1/answer/3.md)
+<!-- **Solution**: [ici](resources/tp-1/answer/3.md) -->
 
 #### 2.4 Data venant d'un CSV
 
@@ -441,7 +465,7 @@ Nous pouvons traiter de nombreux types de données avec Logstash, dont des [CSV]
 
 Réaliser le filter, et tester
 
-**Solution**: [ici](resources/tp-1/answer/4.md)
+<!-- **Solution**: [ici](resources/tp-1/answer/4.md) -->
 
 #### 2.5 JSON logs
 
@@ -452,7 +476,7 @@ Nous avons maintenant des logs web, dans un format [JSON](https://fr.wikipedia.o
 Même processus.
 
 
-**Solution**: [ici](resources/tp-1/answer/5.md)
+<!-- **Solution**: [ici](resources/tp-1/answer/5.md) -->
 
 ### 3. Questions ouvertes
 
