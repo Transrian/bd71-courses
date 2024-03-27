@@ -143,7 +143,7 @@ Créer une nouvelle **pipeline Logstash**, et ajouter, en plus de l'input & du f
 Si vous n'avez pas d'erreurs:
 
 - Connectez-vous dans Kibana
-- Dans le menu, aller dans **Stack Management**, puis dans **Data**, la partie **Index Pattern**
+- Dans le menu, aller dans **Stack Management**, puis dans **Data**, la partie **Index Management**
 - **Vérifier** que l'index que vous avez créé **existe** bien, et que **le nombre de documents** n'est pas égal à zéro
 
 Si tout c'est bien passé, après avoir vérifié de la même manière que l'exemple précédent, vous pouvez continuer.
