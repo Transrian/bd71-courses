@@ -26,11 +26,11 @@ Ci-dessous une traduction de leur [page de description](https://www.elastic.co/g
 
 ## 2.1 Jeux de données
 
-Comme nous devons avoir un jeu de données relativement conséquent en taille, nous allons utiliser l'historique des prénoms en France, par département, de 1900 à 2020.
+Comme nous devons avoir un jeu de données relativement conséquent en taille, nous allons utiliser l'historique des prénoms en France, par département, de 1900 à 2021.
 
-> Pour les personnes utilisant le clusteur de BD71, aucun import des données n'est nécessaire, utiliser l'index `prenoms-france`, vous pouvez directement passer au point 2.2
+!> Pour les personnes utilisant le clusteur de BD71, aucun import des données n'est nécessaire, utiliser l'index `prenoms-france`, vous pouvez directement passer au point 2.2
 
-Les données sont téléchargeables à cette adresse: https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2021_csv.zip ([page d'origine](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262))
+Les données sont téléchargeables à cette adresse: https://www.insee.fr/fr/statistiques/fichier/7633685/dpt2022_csv.zip ([page d'origine](https://www.insee.fr/fr/statistiques/7633685?sommaire=7635552))
 
 Téléchargez et dézippez le fichier zip, et vous devriez avoir un fichier CSV d'environ 80Mb.
 
@@ -46,7 +46,7 @@ Une fois valider, et passer à la page suivante, vous allez vous mettre en mode 
 
 Il faut:
 
-- Changer le mapping du champ `departement` de **long** à **string** (partie surligné sur le bloc central)
+- Changer le mapping du champ `departement` de **long** à **keyword** (partie surligné sur le bloc central)
 - Supprimer de la partie **Ingest pipeline** le **convert du champs ``departement`` en ``long``** (partie surlignée sur le bloc de droite)
 
 Une fois l'import lancé (**vous devriez avoir des erreurs**, dues à des erreurs dans le fichier d'origine), l'index pattern sera créer, et vous n'avez plus qu'à passer à l'étape suivante!
