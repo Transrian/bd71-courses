@@ -221,7 +221,7 @@ Questions:
 
 - Quel modèle est le plus "sérré" ?
 - Quel modèle est le plus précis ? Et pourquoi ?
-- D'après l'algorithme d'apprentissage, les morts vont elles augmentés / diminuer, d'ici 1 semaine ?
+- D'après l'algorithme d'apprentissage, les morts vont elles augmentés / diminuer, la dernière semaine de 2021 ?
 
 **Nouveaux cas par pays** *(jeu de donnée monde)*
 
@@ -229,8 +229,8 @@ Réalisez, avec un **Multi-metric**, un modèle représentant l'évolution des n
 
 Questions:
 
-- Sur les 6 derniers mois, quel est le pays ayant eu une évolution anormale ? Pourquoi ?
-- Et sur 12 mois ?
+- Sur les 6 derniers mois de 2021, quel est le pays ayant eu une évolution la plus anormale ?
+- Et sur 12 mois de 2021 ?
 
 **Évolutions différentes par pays** *(jeu de donnée monde)*
 
@@ -238,11 +238,11 @@ Questions:
 
 Questions:
 
-- Le premier résultat, sur les 6 derniers mois, est-il valable ?
+- Le premier résultat, sur les 6 derniers mois de 2021, semble-il être valable ?
 - Quelle caractéristique possèdent les premiers résultats (à votre avis) : pourquoi ceux-là et pas d'autres, telle que la France ou les États-Unis ?
 
 **Impact de la région sur les cas de COVID en France** *(jeu de donnée France)*
 
 (pas besoin de filtres)
 
-En réutilisant le jeu de données sur la France (`<groupeX>-covid-france`), et en créant le modèle adapté, combien de pourcentage de départements (vous savez le nombre de département en france, et sont affichés dans le résultats seulement les départements considérés comme  anormaux) ont une croissance des hospitalisations anormales sur la dernière année ?
+En réutilisant le jeu de données sur la France (`<groupeX>-covid-france`), et en créant le modèle adapté, combien de pourcentage de départements (vous savez le nombre de département en france, et sont affichés dans le résultats seulement les départements considérés comme  anormaux) ont une croissance des hospitalisations anormales sur 2021 ?
